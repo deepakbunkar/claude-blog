@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Slide 1</title></head>
+<body style="margin:0;padding:0;background:#000;">
+<svg viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg" style="max-width:1080px;">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="accent1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#bg1)"/>
+
+  <!-- Subtle grid pattern -->
+  <line x1="0" y1="270" x2="1080" y2="270" stroke="#ffffff" stroke-width="0.5" opacity="0.03"/>
+  <line x1="0" y1="540" x2="1080" y2="540" stroke="#ffffff" stroke-width="0.5" opacity="0.03"/>
+  <line x1="0" y1="810" x2="1080" y2="810" stroke="#ffffff" stroke-width="0.5" opacity="0.03"/>
+  <line x1="270" y1="0" x2="270" y2="1080" stroke="#ffffff" stroke-width="0.5" opacity="0.03"/>
+  <line x1="540" y1="0" x2="540" y2="1080" stroke="#ffffff" stroke-width="0.5" opacity="0.03"/>
+  <line x1="810" y1="0" x2="810" y2="1080" stroke="#ffffff" stroke-width="0.5" opacity="0.03"/>
+
+  <!-- Accent glow top-right -->
+  <circle cx="900" cy="150" r="200" fill="#6366f1" opacity="0.06"/>
+  <circle cx="180" cy="900" r="180" fill="#8b5cf6" opacity="0.04"/>
+
+  <!-- Top bar accent -->
+  <rect x="80" y="80" width="60" height="4" rx="2" fill="url(#accent1)"/>
+
+  <!-- Swipe indicator -->
+  <text x="980" y="100" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#ffffff" opacity="0.25">1/3 →</text>
+
+  <!-- Main headline -->
+  <text x="80" y="260" font-family="Inter, system-ui, sans-serif" font-size="58" font-weight="800" fill="#ffffff" letter-spacing="-1">
+    <tspan x="80" dy="0">You know AI can</tspan>
+    <tspan x="80" dy="75">improve your product.</tspan>
+  </text>
+
+  <!-- Divider line -->
+  <rect x="80" y="430" width="100" height="3" rx="1.5" fill="url(#accent1)"/>
+
+  <!-- Sub text -->
+  <text x="80" y="510" font-family="Inter, system-ui, sans-serif" font-size="42" font-weight="400" fill="#ffffff" opacity="0.7">
+    <tspan x="80" dy="0">You just don't know</tspan>
+    <tspan x="80" dy="58">where it fits</tspan>
+  </text>
+
+  <text x="80" y="660" font-family="Inter, system-ui, sans-serif" font-size="42" font-weight="400" fill="#ffffff" opacity="0.7">
+    <tspan x="80" dy="0">or what's realistic</tspan>
+    <tspan x="80" dy="58">for your budget.</tspan>
+  </text>
+
+  <!-- Highlight box -->
+  <rect x="60" y="810" width="960" height="90" rx="12" fill="#6366f1" opacity="0.1" stroke="#6366f1" stroke-width="1" opacity="0.3"/>
+  <text x="540" y="865" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="28" fill="#a5b4fc" font-weight="500">Sound familiar? Swipe to see how we fix this →</text>
+
+  <!-- Bottom logo area -->
+  <text x="80" y="1020" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700" fill="#ffffff" opacity="0.4">DianApps</text>
+  <text x="980" y="1020" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="20" fill="#ffffff" opacity="0.2">AI Development Company</text>
+
+</svg>
+</body>
+</html>
