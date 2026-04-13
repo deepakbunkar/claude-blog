@@ -74,40 +74,28 @@ function divider(ctx, x, y, w) {
   ctx.fillStyle = g; rr(ctx,x,y,w,3,1.5); ctx.fill();
 }
 
-// Draw logo as WHITE on dark bg (matching reference image)
 function drawWhiteLogo(ctx, logo, x, y, h) {
   if (!logo) return;
   const asp = logo.width / logo.height;
   const w = h * asp;
-
-  // Create temp canvas, draw logo, then overlay white using composite
   const tmp = document.createElement('canvas');
   tmp.width = Math.ceil(w); tmp.height = Math.ceil(h);
   const tc = tmp.getContext('2d');
   tc.drawImage(logo, 0, 0, w, h);
-  // Turn all visible pixels white
   tc.globalCompositeOperation = 'source-atop';
   tc.fillStyle = 'rgba(255,255,255,0.9)';
   tc.fillRect(0, 0, w, h);
-
   ctx.drawImage(tmp, x, y);
 }
 
-// Top bar: white logo left + "Swipe →" right (matching reference)
-function drawTopBar(ctx, logo, showSwipe, slideNum) {
+function drawTopBar(ctx, logo, showSwipe) {
   drawWhiteLogo(ctx, logo, 60, 50, 48);
-
-  if (showSwipe) {
-    ctx.font = '400 24px Inter,system-ui,sans-serif';
-    ctx.fillStyle = 'rgba(255,255,255,0.35)';
-    ctx.textAlign = 'right';
-    ctx.fillText('Swipe →', 1020, 82);
-  } else {
-    ctx.font = '400 24px Inter,system-ui,sans-serif';
-    ctx.fillStyle = 'rgba(255,255,255,0.35)';
-    ctx.textAlign = 'right';
-    ctx.fillText(slideNum, 1020, 82);
-  }
+  ctx.font = '400 24px Inter,system-ui,sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  ctx.textAlign = 'right';
+  ctx.fillText(showSwipe ? 'Swipe →' : '3/3', 1020, 82);
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(60,120); ctx.lineTo(1020,120); ctx.stroke();
 }
 
 // ===== SLIDE 1 =====
@@ -115,134 +103,178 @@ function s1(ctx, logo) {
   drawBg(ctx);
   glow(ctx,880,180,220,'#6366f1',0.05);
   glow(ctx,200,850,180,'#8b5cf6',0.03);
+  drawTopBar(ctx, logo, true);
 
-  drawTopBar(ctx, logo, true, '');
-
-  // Thin line under top bar
-  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(60,120); ctx.lineTo(1020,120); ctx.stroke();
-
+  // Headline
   ctx.textAlign = 'left';
-  ctx.font = '800 60px Inter,system-ui,sans-serif';
+  ctx.font = '800 52px Inter,system-ui,sans-serif';
   ctx.fillStyle = '#ffffff';
-  ctx.fillText('You know AI can', 60, 260);
-  ctx.fillText('improve your product.', 60, 340);
+  ctx.fillText('Cut dev costs by up to', 60, 250);
 
-  divider(ctx, 60, 390, 100);
+  // 60% highlighted
+  ctx.fillStyle = '#a5b4fc';
+  ctx.font = '800 68px Inter,system-ui,sans-serif';
+  ctx.fillText('60%', 60, 335);
 
-  ctx.font = '400 44px Inter,system-ui,sans-serif';
+  // Rest of headline on same line
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '800 50px Inter,system-ui,sans-serif';
+  const sixtyW = ctx.measureText('60%').width; // won't be exact but close enough
+  ctx.font = '800 50px Inter,system-ui,sans-serif';
+  ctx.fillText('— AI is closer', 245, 332);
+  ctx.fillText('(and cheaper) than', 60, 405);
+  ctx.fillText('you think.', 60, 475);
+
+  divider(ctx, 60, 530, 100);
+
+  // Sub text
+  ctx.font = '400 38px Inter,system-ui,sans-serif';
   ctx.fillStyle = 'rgba(255,255,255,0.6)';
-  ctx.fillText("You just don't know", 60, 490);
-  ctx.fillText('where it fits', 60, 550);
+  ctx.fillText('Big AI results don\'t need', 60, 620);
+  ctx.fillText('a big budget.', 60, 672);
+  ctx.fillText('They need a smart', 60, 740);
+  ctx.fillText('starting point.', 60, 792);
 
-  ctx.fillText("or what's realistic", 60, 660);
-  ctx.fillText('for your budget.', 60, 720);
-
-  // Bottom prompt
+  // Social proof bar
   ctx.fillStyle = 'rgba(99,102,241,0.08)';
   rr(ctx,40,880,1000,90,14); ctx.fill();
   ctx.strokeStyle = 'rgba(99,102,241,0.2)'; ctx.lineWidth = 1;
   rr(ctx,40,880,1000,90,14); ctx.stroke();
-  ctx.font = '500 27px Inter,system-ui,sans-serif';
+
+  ctx.font = '600 28px Inter,system-ui,sans-serif';
   ctx.fillStyle = '#a5b4fc'; ctx.textAlign = 'center';
-  ctx.fillText('Sound familiar? Swipe to see how we fix this →', 540, 935);
+  ctx.fillText("We've solved this for 50+ teams. Swipe →", 540, 935);
 }
 
 // ===== SLIDE 2 =====
 function s2(ctx, logo) {
   drawBg(ctx);
   glow(ctx,540,500,300,'#6366f1',0.04);
+  drawTopBar(ctx, logo, true);
 
-  drawTopBar(ctx, logo, true, '');
+  // Headline
+  ctx.textAlign = 'left';
+  ctx.font = '800 44px Inter,system-ui,sans-serif';
+  ctx.fillStyle = '#ffffff';
+  ctx.fillText('Your free', 60, 220);
+  ctx.fillStyle = '#a5b4fc';
+  ctx.fillText('AI Readiness Audit', 60, 278);
+  ctx.fillStyle = '#ffffff';
+  ctx.fillText('starts here.', 60, 336);
 
-  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(60,120); ctx.lineTo(1020,120); ctx.stroke();
+  divider(ctx, 60, 380, 80);
+
+  // Step A
+  var y = 430;
+  ctx.fillStyle = 'rgba(255,255,255,0.04)';
+  rr(ctx,60,y,960,135,14); ctx.fill();
+
+  ctx.fillStyle = 'rgba(99,102,241,0.25)';
+  ctx.beginPath(); ctx.arc(128,y+67,34,0,Math.PI*2); ctx.fill();
+  ctx.font = '800 28px Inter,system-ui,sans-serif';
+  ctx.fillStyle = '#a5b4fc'; ctx.textAlign = 'center';
+  ctx.fillText('A', 128, y+77);
 
   ctx.textAlign = 'left';
-  ctx.font = '800 50px Inter,system-ui,sans-serif';
-  ctx.fillStyle = '#ffffff';
-  ctx.fillText('We run a free', 60, 230);
-  ctx.fillStyle = '#a5b4fc';
-  ctx.fillText('AI Opportunity Audit.', 60, 295);
+  ctx.font = '600 28px Inter,system-ui,sans-serif';
+  ctx.fillStyle = '#fff';
+  ctx.fillText('We understand your world first', 190, y+50);
+  ctx.font = '400 22px Inter,system-ui,sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.fillText('Your product, your users, your pain points', 190, y+88);
 
-  divider(ctx, 60, 340, 80);
+  // Step B
+  y = 590;
+  ctx.fillStyle = 'rgba(255,255,255,0.04)';
+  rr(ctx,60,y,960,135,14); ctx.fill();
 
-  // Steps
-  [{n:'01',t:'We look at your product',s:'Your features, your users, your data',y:400},
-   {n:'02',t:'We map AI opportunities',s:"What's worth building vs what's not",y:555},
-   {n:'03',t:'You get a clear roadmap',s:'Timeline, cost, and expected ROI',y:710}
-  ].forEach(st => {
-    ctx.fillStyle = 'rgba(255,255,255,0.04)';
-    rr(ctx,60,st.y,960,125,14); ctx.fill();
+  ctx.fillStyle = 'rgba(99,102,241,0.25)';
+  ctx.beginPath(); ctx.arc(128,y+67,34,0,Math.PI*2); ctx.fill();
+  ctx.font = '800 28px Inter,system-ui,sans-serif';
+  ctx.fillStyle = '#a5b4fc'; ctx.textAlign = 'center';
+  ctx.fillText('B', 128, y+77);
 
-    ctx.fillStyle = 'rgba(99,102,241,0.2)';
-    ctx.beginPath(); ctx.arc(128,st.y+62,34,0,Math.PI*2); ctx.fill();
+  ctx.textAlign = 'left';
+  ctx.font = '600 28px Inter,system-ui,sans-serif';
+  ctx.fillStyle = '#fff';
+  ctx.fillText('We spot your highest-ROI AI wins', 190, y+50);
+  ctx.font = '400 22px Inter,system-ui,sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.fillText('What to build now, what to skip, and why', 190, y+88);
 
-    ctx.font = '800 26px Inter,system-ui,sans-serif';
-    ctx.fillStyle = '#a5b4fc'; ctx.textAlign = 'center';
-    ctx.fillText(st.n, 128, st.y+72);
+  // Step C
+  y = 750;
+  ctx.fillStyle = 'rgba(255,255,255,0.04)';
+  rr(ctx,60,y,960,135,14); ctx.fill();
 
-    ctx.textAlign = 'left';
-    ctx.font = '600 30px Inter,system-ui,sans-serif';
-    ctx.fillStyle = '#fff';
-    ctx.fillText(st.t, 190, st.y+52);
-    ctx.font = '400 23px Inter,system-ui,sans-serif';
-    ctx.fillStyle = 'rgba(255,255,255,0.4)';
-    ctx.fillText(st.s, 190, st.y+88);
-  });
+  ctx.fillStyle = 'rgba(99,102,241,0.25)';
+  ctx.beginPath(); ctx.arc(128,y+67,34,0,Math.PI*2); ctx.fill();
+  ctx.font = '800 28px Inter,system-ui,sans-serif';
+  ctx.fillStyle = '#a5b4fc'; ctx.textAlign = 'center';
+  ctx.fillText('C', 128, y+77);
 
+  ctx.textAlign = 'left';
+  ctx.font = '600 26px Inter,system-ui,sans-serif';
+  ctx.fillStyle = '#fff';
+  ctx.fillText('You get a decision-ready AI roadmap', 190, y+50);
+  ctx.font = '400 22px Inter,system-ui,sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.fillText('Timeline, budget, and projected savings — spelled out', 190, y+88);
+
+  // Bottom tagline
   ctx.textAlign = 'center';
-  ctx.font = '400 26px Inter,system-ui,sans-serif';
+  ctx.font = '500 26px Inter,system-ui,sans-serif';
   ctx.fillStyle = 'rgba(255,255,255,0.35)';
-  ctx.fillText('No fluff. No sales pitch. Just honest answers.', 540, 930);
+  ctx.fillText('Zero pressure. Honest advice. Real next steps.', 540, 960);
 }
 
 // ===== SLIDE 3 =====
 function s3(ctx, logo) {
   drawBg(ctx);
-  glow(ctx,540,380,300,'#6366f1',0.07);
-  glow(ctx,540,380,170,'#8b5cf6',0.04);
+  glow(ctx,540,370,300,'#6366f1',0.07);
+  glow(ctx,540,370,170,'#8b5cf6',0.04);
+  drawTopBar(ctx, logo, false);
 
-  drawTopBar(ctx, logo, false, '3/3');
-
-  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(60,120); ctx.lineTo(1020,120); ctx.stroke();
-
+  // Headline
   ctx.textAlign = 'center';
-  ctx.font = '800 56px Inter,system-ui,sans-serif';
+  ctx.font = '800 46px Inter,system-ui,sans-serif';
   ctx.fillStyle = '#fff';
-  ctx.fillText('Ready to find out', 540, 300);
-  ctx.fillText('what AI can do', 540, 375);
-  ctx.fillText('for your business?', 540, 450);
+  ctx.fillText('Find out exactly where', 540, 280);
+  ctx.fillText('AI can cut your costs', 540, 345);
+
+  ctx.fillStyle = '#a5b4fc';
+  ctx.fillText('— in one free call.', 540, 415);
 
   // CTA button
-  const bg2 = ctx.createLinearGradient(200,0,880,0);
+  const bg2 = ctx.createLinearGradient(180,0,900,0);
   bg2.addColorStop(0,'#6366f1'); bg2.addColorStop(1,'#8b5cf6');
   ctx.fillStyle = bg2;
-  rr(ctx,200,530,680,100,50); ctx.fill();
+  rr(ctx,180,510,720,105,52); ctx.fill();
   ctx.font = '700 36px Inter,system-ui,sans-serif';
   ctx.fillStyle = '#fff'; ctx.textAlign = 'center';
-  ctx.fillText('Get Your Free AI Audit', 540, 592);
+  ctx.fillText('Claim Your Free AI Audit', 540, 575);
 
-  // Trust line
+  // Divider
   ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(160,720); ctx.lineTo(920,720); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(160,710); ctx.lineTo(920,710); ctx.stroke();
 
+  // Trust
   ctx.font = '400 22px Inter,system-ui,sans-serif';
   ctx.fillStyle = 'rgba(255,255,255,0.28)';
-  ctx.fillText('40+ AI products shipped  |  USA & Australia  |  End-to-end delivery', 540, 775);
+  ctx.fillText('50+ teams served  |  USA & Australia  |  End-to-end AI delivery', 540, 765);
 
+  // Bottom text
   ctx.font = '400 30px Inter,system-ui,sans-serif';
   ctx.fillStyle = 'rgba(255,255,255,0.4)';
-  ctx.fillText('No commitment. No pitch deck.', 540, 870);
-  ctx.fillText("Just clarity on what's possible.", 540, 915);
+  ctx.fillText('No commitment. No pitch deck.', 540, 860);
+  ctx.fillText('Just a clear plan and real numbers.', 540, 905);
 
   // White logo centered at bottom
   if (logo) {
     const h = 40;
     const asp = logo.width / logo.height;
     const w = h * asp;
-    drawWhiteLogo(ctx, logo, 540 - w/2, 970, h);
+    drawWhiteLogo(ctx, logo, 540 - w/2, 965, h);
   }
 }
 
