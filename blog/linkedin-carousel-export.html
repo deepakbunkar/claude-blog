@@ -105,45 +105,34 @@ function s1(ctx, logo) {
   glow(ctx,200,850,180,'#8b5cf6',0.03);
   drawTopBar(ctx, logo, true);
 
-  // Headline
+  // Line 1: "Cut dev costs by up to 60%"
   ctx.textAlign = 'left';
-  ctx.font = '800 52px Inter,system-ui,sans-serif';
+  ctx.font = '800 50px Inter,system-ui,sans-serif';
   ctx.fillStyle = '#ffffff';
-  ctx.fillText('Cut dev costs by up to', 60, 250);
-
-  // 60% highlighted
+  ctx.fillText('Cut dev costs by up to', 60, 260);
   ctx.fillStyle = '#a5b4fc';
-  ctx.font = '800 68px Inter,system-ui,sans-serif';
-  ctx.fillText('60%', 60, 335);
-
-  // Rest of headline on same line
+  ctx.fillText('60%', 60, 330);
   ctx.fillStyle = '#ffffff';
-  ctx.font = '800 50px Inter,system-ui,sans-serif';
-  const sixtyW = ctx.measureText('60%').width; // won't be exact but close enough
-  ctx.font = '800 50px Inter,system-ui,sans-serif';
-  ctx.fillText('— AI is closer', 245, 332);
-  ctx.fillText('(and cheaper) than', 60, 405);
-  ctx.fillText('you think.', 60, 475);
+  ctx.fillText('— AI is closer', 220, 327);
 
-  divider(ctx, 60, 530, 100);
+  // Line 2
+  ctx.fillText('(and cheaper) than', 60, 400);
+  ctx.fillText('you think.', 60, 470);
 
-  // Sub text
-  ctx.font = '400 38px Inter,system-ui,sans-serif';
+  divider(ctx, 60, 525, 100);
+
+  // Line 3: "Big AI results..."
+  ctx.font = '400 40px Inter,system-ui,sans-serif';
   ctx.fillStyle = 'rgba(255,255,255,0.6)';
-  ctx.fillText('Big AI results don\'t need', 60, 620);
-  ctx.fillText('a big budget.', 60, 672);
-  ctx.fillText('They need a smart', 60, 740);
-  ctx.fillText('starting point.', 60, 792);
+  ctx.fillText('Big AI results don\'t need a big', 60, 615);
+  ctx.fillText('budget. They need a smart', 60, 670);
+  ctx.fillText('starting point.', 60, 725);
 
-  // Social proof bar
-  ctx.fillStyle = 'rgba(99,102,241,0.08)';
-  rr(ctx,40,880,1000,90,14); ctx.fill();
-  ctx.strokeStyle = 'rgba(99,102,241,0.2)'; ctx.lineWidth = 1;
-  rr(ctx,40,880,1000,90,14); ctx.stroke();
-
-  ctx.font = '600 28px Inter,system-ui,sans-serif';
-  ctx.fillStyle = '#a5b4fc'; ctx.textAlign = 'center';
-  ctx.fillText("We've solved this for 50+ teams. Swipe →", 540, 935);
+  // Line 4: "We've solved this..."
+  ctx.font = '600 40px Inter,system-ui,sans-serif';
+  ctx.fillStyle = '#a5b4fc';
+  ctx.fillText("We've solved this for 50+ teams.", 60, 840);
+  ctx.fillText('Swipe to see how →', 60, 900);
 }
 
 // ===== SLIDE 2 =====
