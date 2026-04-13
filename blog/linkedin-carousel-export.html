@@ -128,11 +128,16 @@ function s1(ctx, logo) {
   ctx.fillText('budget. They need a smart', 60, 670);
   ctx.fillText('starting point.', 60, 725);
 
-  // Line 4: "We've solved this..."
-  ctx.font = '600 40px Inter,system-ui,sans-serif';
-  ctx.fillStyle = '#a5b4fc';
-  ctx.fillText("We've solved this for 50+ teams.", 60, 840);
-  ctx.fillText('Swipe to see how →', 60, 900);
+  // Bottom bar: "We've solved this..."
+  ctx.fillStyle = 'rgba(99,102,241,0.08)';
+  rr(ctx,40,820,1000,120,14); ctx.fill();
+  ctx.strokeStyle = 'rgba(99,102,241,0.2)'; ctx.lineWidth = 1;
+  rr(ctx,40,820,1000,120,14); ctx.stroke();
+
+  ctx.font = '600 30px Inter,system-ui,sans-serif';
+  ctx.fillStyle = '#a5b4fc'; ctx.textAlign = 'center';
+  ctx.fillText("We've solved this for 50+ teams.", 540, 870);
+  ctx.fillText('Swipe to see how →', 540, 915);
 }
 
 // ===== SLIDE 2 =====
