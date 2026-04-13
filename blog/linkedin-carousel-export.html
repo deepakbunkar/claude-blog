@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DianApps LinkedIn Carousel - Export as PNG</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #111; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; gap: 40px; }
+  h1 { color: #fff; font-size: 20px; opacity: 0.4; font-weight: 400; }
+  .label { color: #a5b4fc; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+  canvas { border: 1px solid #222; }
+  .download-btn { display: inline-block; margin-top: 8px; padding: 10px 24px; background: #6366f1; color: #fff; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; text-decoration: none; font-family: inherit; }
+  .download-btn:hover { background: #8b5cf6; }
+  .slide-wrap { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head>
+<body>
+
+<h1>Right-click each image → Save Image As PNG (1080x1080)</h1>
+
+<div class="slide-wrap">
+  <div class="label">Slide 1 — Hook</div>
+  <canvas id="c1" width="1080" height="1080"></canvas>
+  <button class="download-btn" onclick="download('c1','dianapps-slide1.png')">Download Slide 1</button>
+</div>
+
+<div class="slide-wrap">
+  <div class="label">Slide 2 — Solution</div>
+  <canvas id="c2" width="1080" height="1080"></canvas>
+  <button class="download-btn" onclick="download('c2','dianapps-slide2.png')">Download Slide 2</button>
+</div>
+
+<div class="slide-wrap">
+  <div class="label">Slide 3 — CTA</div>
+  <canvas id="c3" width="1080" height="1080"></canvas>
+  <button class="download-btn" onclick="download('c3','dianapps-slide3.png')">Download Slide 3</button>
+</div>
+
+<script>
+const LOGO_SRC = 'images/dianapps-logo.png';
+
+function loadLogo() {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = LOGO_SRC;
+  });
+}
+
+function download(canvasId, filename) {
+  const canvas = document.getElementById(canvasId);
+  const link = document.createElement('a');
+  link.download = filename;
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+function drawGrid(ctx) {
+  ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+  ctx.lineWidth = 0.5;
+  [270, 540, 810].forEach(y => {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(1080, y); ctx.stroke();
+  });
+  [270, 540, 810].forEach(x => {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 1080); ctx.stroke();
+  });
+}
+
+function drawBg(ctx) {
+  const grad = ctx.createLinearGradient(0, 0, 1080, 1080);
+  grad.addColorStop(0, '#0a0a0a');
+  grad.addColorStop(1, '#1a1a2e');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, 1080, 1080);
+  drawGrid(ctx);
+}
+
+function drawAccentBar(ctx) {
+  const grad = ctx.createLinearGradient(80, 0, 140, 0);
+  grad.addColorStop(0, '#6366f1');
+  grad.addColorStop(1, '#8b5cf6');
+  ctx.fillStyle = grad;
+  roundRect(ctx, 80, 80, 60, 4, 2);
+  ctx.fill();
+}
+
+function drawGlow(ctx, x, y, r, color, opacity) {
+  ctx.fillStyle = color;
+  ctx.globalAlpha = opacity;
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.globalAlpha = 1;
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function drawLogo(ctx, logo, x, y, h) {
+  if (!logo) return;
+  const aspect = logo.width / logo.height;
+  const w = h * aspect;
+  ctx.drawImage(logo, x, y - h + 4, w, h);
+}
+
+function drawSlide1(ctx, logo) {
+  drawBg(ctx);
+  drawGlow(ctx, 900, 150, 200, '#6366f1', 0.06);
+  drawGlow(ctx, 180, 900, 180, '#8b5cf6', 0.04);
+  drawAccentBar(ctx);
+
+  // Slide counter
+  ctx.font = '22px Inter, system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.25)';
+  ctx.textAlign = 'right';
+  ctx.fillText('1/3 →', 980, 100);
+
+  // Main headline
+  ctx.textAlign = 'left';
+  ctx.font = '800 58px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#ffffff';
+  ctx.fillText('You know AI can', 80, 260);
+  ctx.fillText('improve your product.', 80, 335);
+
+  // Divider
+  const grad = ctx.createLinearGradient(80, 0, 180, 0);
+  grad.addColorStop(0, '#6366f1');
+  grad.addColorStop(1, '#8b5cf6');
+  ctx.fillStyle = grad;
+  roundRect(ctx, 80, 380, 100, 3, 1.5);
+  ctx.fill();
+
+  // Sub text
+  ctx.font = '400 42px Inter, system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.7)';
+  ctx.fillText("You just don't know", 80, 470);
+  ctx.fillText('where it fits', 80, 528);
+  ctx.fillText("or what's realistic", 80, 630);
+  ctx.fillText('for your budget.', 80, 688);
+
+  // Bottom prompt box
+  ctx.fillStyle = 'rgba(99,102,241,0.1)';
+  roundRect(ctx, 60, 810, 960, 90, 12);
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(99,102,241,0.3)';
+  ctx.lineWidth = 1;
+  roundRect(ctx, 60, 810, 960, 90, 12);
+  ctx.stroke();
+
+  ctx.font = '500 28px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#a5b4fc';
+  ctx.textAlign = 'center';
+  ctx.fillText('Sound familiar? Swipe to see how we fix this →', 540, 865);
+
+  // Logo
+  drawLogo(ctx, logo, 80, 1025, 30);
+
+  ctx.textAlign = 'right';
+  ctx.font = '400 20px Inter, system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.2)';
+  ctx.fillText('AI Development Company', 980, 1020);
+}
+
+function drawSlide2(ctx, logo) {
+  drawBg(ctx);
+  drawGlow(ctx, 540, 540, 300, '#6366f1', 0.04);
+  drawAccentBar(ctx);
+
+  // Counter
+  ctx.font = '22px Inter, system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.25)';
+  ctx.textAlign = 'right';
+  ctx.fillText('2/3 →', 980, 100);
+
+  // Logo badge
+  ctx.fillStyle = 'rgba(99,102,241,0.15)';
+  roundRect(ctx, 80, 140, 180, 44, 22);
+  ctx.fill();
+  ctx.strokeStyle = '#6366f1';
+  ctx.lineWidth = 1;
+  roundRect(ctx, 80, 140, 180, 44, 22);
+  ctx.stroke();
+  ctx.font = '700 20px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#a5b4fc';
+  ctx.textAlign = 'center';
+  ctx.fillText('DianApps', 170, 168);
+
+  // Headline
+  ctx.textAlign = 'left';
+  ctx.font = '800 48px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#ffffff';
+  ctx.fillText('We run a free', 80, 280);
+  ctx.fillStyle = '#a5b4fc';
+  ctx.fillText('AI Opportunity Audit.', 80, 342);
+
+  // Divider
+  const grad = ctx.createLinearGradient(80, 0, 160, 0);
+  grad.addColorStop(0, '#6366f1');
+  grad.addColorStop(1, '#8b5cf6');
+  ctx.fillStyle = grad;
+  roundRect(ctx, 80, 390, 80, 3, 1.5);
+  ctx.fill();
+
+  // Steps
+  const steps = [
+    { num: '01', title: 'We look at your product', sub: 'Your features, your users, your data', y: 440 },
+    { num: '02', title: 'We map AI opportunities', sub: "What's worth building vs what's not", y: 570 },
+    { num: '03', title: 'You get a clear roadmap', sub: 'Timeline, cost, and expected ROI', y: 700 }
+  ];
+
+  steps.forEach(s => {
+    ctx.fillStyle = 'rgba(255,255,255,0.04)';
+    roundRect(ctx, 80, s.y, 920, 110, 12);
+    ctx.fill();
+
+    ctx.fillStyle = 'rgba(99,102,241,0.2)';
+    ctx.beginPath();
+    ctx.arc(140, s.y + 55, 28, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.font = '800 24px Inter, system-ui, sans-serif';
+    ctx.fillStyle = '#a5b4fc';
+    ctx.textAlign = 'center';
+    ctx.fillText(s.num, 140, s.y + 64);
+
+    ctx.textAlign = 'left';
+    ctx.font = '600 28px Inter, system-ui, sans-serif';
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(s.title, 195, s.y + 45);
+
+    ctx.font = '400 22px Inter, system-ui, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+    ctx.fillText(s.sub, 195, s.y + 80);
+  });
+
+  // Bottom tagline
+  ctx.textAlign = 'center';
+  ctx.font = '400 26px Inter, system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.fillText('No fluff. No sales pitch. Just honest answers.', 540, 900);
+
+  // Logo
+  drawLogo(ctx, logo, 80, 1025, 30);
+  ctx.textAlign = 'right';
+  ctx.font = '400 20px Inter, system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.2)';
+  ctx.fillText('AI Development Company', 980, 1020);
+}
+
+function drawSlide3(ctx, logo) {
+  drawBg(ctx);
+  drawGlow(ctx, 540, 400, 250, '#6366f1', 0.06);
+  drawGlow(ctx, 540, 400, 150, '#8b5cf6', 0.04);
+  drawAccentBar(ctx);
+
+  // Counter
+  ctx.font = '22px Inter, system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.25)';
+  ctx.textAlign = 'right';
+  ctx.fillText('3/3', 980, 100);
+
+  // Main text
+  ctx.textAlign = 'center';
+  ctx.font = '800 52px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#ffffff';
+  ctx.fillText('Ready to find out', 540, 320);
+  ctx.fillText('what AI can do', 540, 388);
+  ctx.fillText('for your business?', 540, 456);
+
+  // CTA Button
+  const btnGrad = ctx.createLinearGradient(240, 0, 840, 0);
+  btnGrad.addColorStop(0, '#6366f1');
+  btnGrad.addColorStop(1, '#8b5cf6');
+  ctx.fillStyle = btnGrad;
+  roundRect(ctx, 240, 540, 600, 90, 45);
+  ctx.fill();
+
+  ctx.font = '700 32px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#ffffff';
+  ctx.textAlign = 'center';
+  ctx.fillText('Get Your Free AI Audit', 540, 596);
+
+  // Divider line
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(180, 720);
+  ctx.lineTo(900, 720);
+  ctx.stroke();
+
+  // Trust signals
+  ctx.font = '400 22px Inter, system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  ctx.fillText('40+ AI products shipped  |  USA & Australia  |  End-to-end delivery', 540, 775);
+
+  // Bottom tagline
+  ctx.font = '400 28px Inter, system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.fillText('No commitment. No pitch deck.', 540, 870);
+  ctx.fillText("Just clarity on what's possible.", 540, 910);
+
+  // Logo centered
+  if (logo) {
+    const aspect = logo.width / logo.height;
+    const lh = 35;
+    const lw = lh * aspect;
+    ctx.drawImage(logo, 540 - lw / 2, 985, lw, lh);
+  }
+}
+
+async function init() {
+  const logo = await loadLogo();
+
+  const c1 = document.getElementById('c1');
+  drawSlide1(c1.getContext('2d'), logo);
+
+  const c2 = document.getElementById('c2');
+  drawSlide2(c2.getContext('2d'), logo);
+
+  const c3 = document.getElementById('c3');
+  drawSlide3(c3.getContext('2d'), logo);
+}
+
+init();
+</script>
+
+</body>
+</html>
