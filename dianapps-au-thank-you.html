@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You — We'll Be in Touch Soon | DianApps Australia</title>
+<meta name="description" content="Thanks for reaching out to DianApps. Our team will respond within 24 hours with a tailored tech consultation.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Thank You — DianApps Australia">
+<meta property="og:description" content="Your message has been received. We'll be in touch within 24 hours.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Google Ads Conversion Tracking (replace with your real IDs) -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-XXXXXXXXX');
+gtag('event', 'conversion', {'send_to': 'AW-XXXXXXXXX/YYYYYYYYY'});
+</script>
+-->
+
+<!-- Meta Pixel Lead Event (replace with your real Pixel ID) -->
+<!--
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'XXXXXXXXXXXXXXX');
+fbq('track', 'Lead');
+</script>
+-->
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Roboto',sans-serif;color:#060821;line-height:1.6;background:linear-gradient(135deg,#F5F7FC 0%,#FFF4EB 100%);min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
+h1,h2,h3,h4,h5,h6{font-family:'Inter',sans-serif;line-height:1.2}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;height:auto}
+.container{max-width:1140px;margin:0 auto;padding:0 20px}
+
+/* Decorative background */
+body::before{content:'';position:fixed;top:-150px;right:-150px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(44,82,190,.12) 0%,transparent 70%);z-index:0;pointer-events:none}
+body::after{content:'';position:fixed;bottom:-100px;left:-100px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,130,43,.1) 0%,transparent 70%);z-index:0;pointer-events:none}
+
+/* Header */
+.header{position:relative;z-index:10;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);box-shadow:0 1px 8px rgba(0,0,0,.04);padding:16px 0}
+.header .container{display:flex;align-items:center;justify-content:space-between}
+.header-logo img{height:36px}
+.header-phone{font-family:'Inter',sans-serif;font-weight:500;font-size:.9rem;color:#1E3A8A;white-space:nowrap}
+.header-phone svg{vertical-align:middle;margin-right:4px}
+@media(max-width:600px){.header-phone{display:none}}
+
+/* Main content */
+.main{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 20px;position:relative;z-index:1}
+.thank-card{background:#fff;border-radius:24px;padding:60px 50px;max-width:640px;width:100%;text-align:center;box-shadow:0 24px 64px rgba(44,82,190,.15),0 0 0 1px rgba(44,82,190,.06);animation:fadeUp .8s ease forwards}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes checkPop{
+  0%{transform:scale(0);opacity:0}
+  50%{transform:scale(1.15);opacity:1}
+  100%{transform:scale(1);opacity:1}
+}
+
+@keyframes drawCheck{
+  from{stroke-dashoffset:48}
+  to{stroke-dashoffset:0}
+}
+
+.check-wrap{width:96px;height:96px;margin:0 auto 28px;background:linear-gradient(135deg,#2C52BE,#FF822B);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:checkPop .6s .2s cubic-bezier(0.34,1.56,0.64,1) both;box-shadow:0 12px 32px rgba(44,82,190,.25)}
+.check-wrap svg{width:48px;height:48px;stroke:#fff;stroke-width:3.5;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:48;stroke-dashoffset:48;animation:drawCheck .5s .8s ease forwards}
+
+.thank-card h1{font-size:clamp(1.8rem,4.5vw,2.5rem);font-weight:800;margin-bottom:14px;color:#060821}
+.thank-card h1 span{background:linear-gradient(269.86deg,#2C52BE 3.03%,#FF822B 75.82%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.thank-card .lead{font-size:1.1rem;color:#4a5570;margin-bottom:32px;line-height:1.7}
+
+.next-steps{background:linear-gradient(135deg,#F5F7FC 0%,#FFF4EB 100%);border-radius:16px;padding:28px 24px;margin-bottom:32px;text-align:left}
+.next-steps h3{font-size:1rem;font-weight:700;color:#060821;margin-bottom:16px;text-align:center}
+.next-steps ol{list-style:none;padding:0;counter-reset:step}
+.next-steps li{counter-increment:step;padding:10px 0 10px 44px;position:relative;font-size:.95rem;color:#060821}
+.next-steps li::before{content:counter(step);position:absolute;left:0;top:8px;width:28px;height:28px;background:linear-gradient(135deg,#2C52BE,#FF822B);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:700;font-size:.85rem}
+.next-steps li strong{color:#1E3A8A;font-weight:600}
+
+.actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:28px}
+.btn-primary{display:inline-block;background:linear-gradient(266.31deg,#2C52BE 3.03%,#FF822B 96.97%);color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem;padding:13px 30px;border-radius:44px;border:none;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(30,58,138,.25)}
+.btn-outline{display:inline-block;color:#1E3A8A;font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem;padding:12px 30px;border-radius:44px;border:2px solid #1E3A8A;background:transparent;transition:transform .25s ease,background .25s ease,color .25s ease}
+.btn-outline:hover{background:#1E3A8A;color:#fff;transform:translateY(-3px)}
+
+.contact-row{padding-top:24px;border-top:1px solid #eef0f5;font-size:.9rem;color:#666}
+.contact-row a{color:#1E3A8A;font-weight:600;transition:color .2s ease}
+.contact-row a:hover{color:#FF822B}
+.contact-row .sep{margin:0 12px;opacity:.4}
+
+.socials{display:flex;gap:12px;justify-content:center;margin-top:20px}
+.socials a{width:38px;height:38px;border-radius:50%;background:#f5f7fc;display:flex;align-items:center;justify-content:center;transition:background .2s ease,transform .2s ease}
+.socials a:hover{background:#1E3A8A;transform:translateY(-2px)}
+.socials a:hover svg{stroke:#fff}
+.socials svg{width:18px;height:18px;stroke:#1E3A8A;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s ease}
+
+@media(max-width:600px){
+  .thank-card{padding:40px 28px}
+  .actions{flex-direction:column}
+  .actions a{width:100%;text-align:center}
+}
+
+/* Footer */
+.footer{background:#060821;color:rgba(255,255,255,.7);padding:24px 0;text-align:center;font-size:.85rem;position:relative;z-index:10}
+.footer a{color:rgba(255,255,255,.85);transition:color .2s ease}
+.footer a:hover{color:#FF822B}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+<div class="container">
+<a href="https://dianapps.com" class="header-logo"><img src="https://dianapps.com/_next/static/media/DaLogo.6724b7c3.png" alt="DianApps Logo" width="140" height="36"></a>
+<a href="tel:+61390056149" class="header-phone"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E3A8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +61-390056149</a>
+</div>
+</header>
+
+<!-- Main content -->
+<main class="main">
+<div class="container">
+<div class="thank-card">
+
+<div class="check-wrap">
+<svg viewBox="0 0 24 24"><polyline points="5 12 10 17 19 8"/></svg>
+</div>
+
+<h1>Thank You! <span>We've Got Your Message.</span></h1>
+<p class="lead">Our team has received your request. We'll review your project details and reach out within <strong>24 hours</strong> to schedule your free consultation.</p>
+
+<div class="next-steps">
+<h3>What happens next?</h3>
+<ol>
+<li><strong>Within 24 hours</strong> — Our team will review your request and assign the right specialist for your project.</li>
+<li><strong>Discovery call</strong> — We'll schedule a 30-minute call to understand your goals, timeline, and technical needs.</li>
+<li><strong>Custom proposal</strong> — You'll receive a tailored roadmap with pricing, team composition, and delivery timeline.</li>
+</ol>
+</div>
+
+<div class="actions">
+<a href="https://dianapps.com" class="btn-primary">Explore DianApps</a>
+<a href="https://dianapps.com/portfolio" class="btn-outline">View Our Work</a>
+</div>
+
+<div class="contact-row">
+Need to reach us urgently? <a href="tel:+61390056149">+61-390056149</a> <span class="sep">·</span> <a href="mailto:hello@dianapps.com">hello@dianapps.com</a>
+<div class="socials">
+<a href="https://www.linkedin.com/company/dianapps" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+<a href="https://twitter.com/dianapps" target="_blank" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+<a href="https://www.instagram.com/dianapps" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+</div>
+</div>
+
+</div>
+</div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+<div class="container">
+&copy; 2026 DianApps Technologies Pvt Ltd &nbsp;·&nbsp; Offices in Australia, USA, India, UAE
+</div>
+</footer>
+
+<script>
+// Auto-redirect after 60 seconds (optional — remove if not wanted)
+// setTimeout(function(){window.location.href = "https://dianapps.com"}, 60000);
+
+// Push pageview event for GA4 if tracking is configured
+if (typeof gtag !== 'undefined') {
+  gtag('event', 'page_view', {
+    page_title: 'Thank You',
+    page_path: '/au/thank-you'
+  });
+}
+</script>
+
+</body>
+</html>
