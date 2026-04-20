@@ -1,73 +1,48 @@
-Campaign,Ad Group,Keyword,Match Type,Max CPC,Keyword Status
-StaffAug-AU,Staff Augmentation General,staff augmentation australia,Phrase,,Active
-StaffAug-AU,Staff Augmentation General,staff augmentation sydney,Phrase,,Active
-StaffAug-AU,Staff Augmentation General,staff augmentation melbourne,Phrase,,Active
-StaffAug-AU,Staff Augmentation General,IT staff augmentation australia,Phrase,,Active
-StaffAug-AU,Staff Augmentation General,tech staff augmentation company,Phrase,,Active
-StaffAug-AU,Staff Augmentation General,offshore staff augmentation australia,Phrase,,Active
-StaffAug-AU,Staff Augmentation General,team augmentation services australia,Phrase,,Active
-StaffAug-AU,Hire Developers,hire AI developer australia,Phrase,,Active
-StaffAug-AU,Hire Developers,hire cloud engineer australia,Phrase,,Active
-StaffAug-AU,Hire Developers,hire software developer sydney,Phrase,,Active
-StaffAug-AU,Hire Developers,contract developer australia,Phrase,,Active
-StaffAug-AU,Hire Developers,remote developer team australia,Phrase,,Active
-StaffAug-AU,Hire Developers,offshore development team australia,Phrase,,Active
-StaffAug-AU,Hire Developers,hire cybersecurity engineer australia,Phrase,,Active
-StaffAug-AU,Scale Engineering,scale engineering team fast,Phrase,,Active
-StaffAug-AU,Scale Engineering,tech team scaling australia,Phrase,,Active
-StaffAug-AU,Scale Engineering,IT outsourcing australia,Phrase,,Active
-StaffAug-AU,Scale Engineering,software outsourcing sydney,Phrase,,Active
-StaffAug-AU,Scale Engineering,dedicated development team australia,Phrase,,Active
-AI-Integration-AU,AI Integration General,AI integration company australia,Phrase,,Active
-AI-Integration-AU,AI Integration General,AI implementation partner sydney,Phrase,,Active
-AI-Integration-AU,AI Integration General,AI integration services australia,Phrase,,Active
-AI-Integration-AU,AI Integration General,AI consulting australia,Phrase,,Active
-AI-Integration-AU,AI Integration General,generative AI development australia,Phrase,,Active
-AI-Integration-AU,AI Integration General,AI solution provider australia,Phrase,,Active
-AI-Integration-AU,AI Production ROI,move AI to production,Phrase,,Active
-AI-Integration-AU,AI Production ROI,AI pilot to production,Phrase,,Active
-AI-Integration-AU,AI Production ROI,AI ROI australia,Phrase,,Active
-AI-Integration-AU,AI Production ROI,AI implementation cost australia,Phrase,,Active
-AI-Integration-AU,AI Production ROI,enterprise AI integration,Phrase,,Active
-AI-Integration-AU,AI Production ROI,LLM integration ERP,Phrase,,Active
-AI-Integration-AU,AI Developer,hire AI developer australia,Phrase,,Active
-AI-Integration-AU,AI Developer,machine learning engineer australia,Phrase,,Active
-AI-Integration-AU,AI Developer,AI development company sydney,Phrase,,Active
-AI-Integration-AU,AI Developer,AI development company melbourne,Phrase,,Active
-AI-Integration-AU,AI Developer,NLP developer australia,Phrase,,Active
-Cybersecurity-AU,Essential Eight,Essential Eight compliance australia,Phrase,,Active
-Cybersecurity-AU,Essential Eight,Essential Eight assessment,Phrase,,Active
-Cybersecurity-AU,Essential Eight,Essential Eight audit australia,Phrase,,Active
-Cybersecurity-AU,Essential Eight,ASD Essential Eight,Phrase,,Active
-Cybersecurity-AU,Essential Eight,Essential Eight maturity model,Phrase,,Active
-Cybersecurity-AU,Cybersecurity Services,cybersecurity company australia,Phrase,,Active
-Cybersecurity-AU,Cybersecurity Services,cybersecurity engineers sydney,Phrase,,Active
-Cybersecurity-AU,Cybersecurity Services,managed security services australia,Phrase,,Active
-Cybersecurity-AU,Cybersecurity Services,SOC as a service australia,Phrase,,Active
-Cybersecurity-AU,Cybersecurity Services,cyber incident response australia,Phrase,,Active
-Cybersecurity-AU,Cybersecurity Services,MSSP australia,Phrase,,Active
-Cybersecurity-AU,Cybersecurity Services,penetration testing australia,Phrase,,Active
-Cybersecurity-AU,SOCI Compliance,SOCI Act compliance,Phrase,,Active
-Cybersecurity-AU,SOCI Compliance,critical infrastructure security australia,Phrase,,Active
-Cybersecurity-AU,SOCI Compliance,cybersecurity compliance australia,Phrase,,Active
-Cybersecurity-AU,SOCI Compliance,cyber insurance requirements australia,Phrase,,Active
-Legacy-Modernisation-AU,Legacy Modernisation,legacy modernisation australia,Phrase,,Active
-Legacy-Modernisation-AU,Legacy Modernisation,legacy system migration australia,Phrase,,Active
-Legacy-Modernisation-AU,Legacy Modernisation,technical debt reduction,Phrase,,Active
-Legacy-Modernisation-AU,Legacy Modernisation,application modernisation australia,Phrase,,Active
-Legacy-Modernisation-AU,Legacy Modernisation,legacy to cloud migration,Phrase,,Active
-Legacy-Modernisation-AU,Cloud Migration,cloud migration partner australia,Phrase,,Active
-Legacy-Modernisation-AU,Cloud Migration,AWS migration sydney,Phrase,,Active
-Legacy-Modernisation-AU,Cloud Migration,Azure migration australia,Phrase,,Active
-Legacy-Modernisation-AU,Cloud Migration,cloud migration company australia,Phrase,,Active
-Legacy-Modernisation-AU,Cloud Migration,hybrid cloud migration,Phrase,,Active
-Healthcare-FHIR-AU,FHIR Integration,FHIR integration australia,Phrase,,Active
-Healthcare-FHIR-AU,FHIR Integration,FHIR developer australia,Phrase,,Active
-Healthcare-FHIR-AU,FHIR Integration,HL7 FHIR integration,Phrase,,Active
-Healthcare-FHIR-AU,FHIR Integration,healthcare API development australia,Phrase,,Active
-Healthcare-FHIR-AU,FHIR Integration,FHIR R4 development,Phrase,,Active
-Healthcare-FHIR-AU,Health IT,EHR interoperability australia,Phrase,,Active
-Healthcare-FHIR-AU,Health IT,My Health Record integration,Phrase,,Active
-Healthcare-FHIR-AU,Health IT,healthcare interoperability australia,Phrase,,Active
-Healthcare-FHIR-AU,Health IT,health data platform development,Phrase,,Active
-Healthcare-FHIR-AU,Health IT,digital health development australia,Phrase,,Active
+Campaign,Ad Group,Keyword,Match Type,Keyword Status,Monthly Volume,CPC (AUD)
+AppDev-AU,App Development,app developers sydney,Phrase,Active,720,17.09
+AppDev-AU,App Development,app developers melbourne,Phrase,Active,480,22.77
+AppDev-AU,App Development,mobile app development sydney,Phrase,Active,480,12.65
+AppDev-AU,App Development,mobile app development melbourne,Phrase,Active,390,17.16
+AppDev-AU,App Development,app developers australia,Phrase,Active,590,20.77
+AppDev-AU,App Development,app development company,Phrase,Active,590,23.52
+AppDev-AU,App Development,mobile app development company,Phrase,Active,720,10.49
+AppDev-AU,App Development,app development company australia,Phrase,Active,140,11.23
+AppDev-AU,App Development,app development company sydney,Phrase,Active,170,12.29
+AppDev-AU,App Development,android app development australia,Phrase,Active,140,0
+AppDev-AU,App Development,ios app development australia,Phrase,Active,70,0
+AppDev-AU,App Development,custom app development australia,Phrase,Active,70,7.93
+AppDev-AU,Software Development,custom software development australia,Phrase,Active,480,0
+AppDev-AU,Software Development,software development company australia,Phrase,Active,210,9.57
+AppDev-AU,Software Development,software development sydney,Phrase,Active,320,24.11
+AppDev-AU,Software Development,software development australia,Phrase,Active,320,10.07
+AppDev-AU,Software Development,software development company in australia,Phrase,Active,90,7.83
+AppDev-AU,Software Development,custom software development services australia,Phrase,Active,40,7.93
+AppDev-AU,Software Development,software development services australia,Phrase,Active,40,0
+AppDev-AU,Software Development,best software development companies in australia,Phrase,Active,30,0
+AppDev-AU,Web Development,web developer sydney,Phrase,Active,720,11.46
+AppDev-AU,Web Development,web developer melbourne,Phrase,Active,590,13.24
+AppDev-AU,Web Development,web development company australia,Phrase,Active,140,6.64
+AppDev-AU,Web Development,website development company sydney,Phrase,Active,480,10.52
+AppDev-AU,Web Development,web app development,Phrase,Active,590,10.80
+AppDev-AU,Web Development,web application development australia,Phrase,Active,70,0
+AI-ML-AU,AI Agency & Consulting,ai agency,Phrase,Active,1300,5.60
+AI-ML-AU,AI Agency & Consulting,ai agency australia,Phrase,Active,260,6.22
+AI-ML-AU,AI Agency & Consulting,ai consultant,Phrase,Active,480,5.78
+AI-ML-AU,AI Agency & Consulting,ai consulting australia,Phrase,Active,170,7.12
+AI-ML-AU,AI Agency & Consulting,ai consultancy,Phrase,Active,390,5.78
+AI-ML-AU,AI Agency & Consulting,artificial intelligence consulting,Phrase,Active,480,5.78
+AI-ML-AU,AI Agency & Consulting,ai for business,Phrase,Active,480,7.35
+AI-ML-AU,AI Agency & Consulting,ai marketing agency,Phrase,Active,480,6.91
+AI-ML-AU,AI Company,ai companies australia,Phrase,Active,210,2.62
+AI-ML-AU,AI Company,ai companies in australia,Phrase,Active,170,2.73
+AI-ML-AU,AI Company,ai company australia,Phrase,Active,110,2.62
+AI-ML-AU,AI Company,ai australia,Phrase,Active,390,2.07
+AI-ML-AU,AI Company,ai solutions australia,Phrase,Active,50,0
+AI-ML-AU,AI Company,artificial intelligence company australia,Phrase,Active,70,2.72
+AI-ML-AU,AI Company,ai development company in australia,Phrase,Active,70,2.29
+AI-ML-AU,AI Company,ai development company australia,Phrase,Active,40,0
+AI-ML-AU,AI Automation,ai automation,Phrase,Active,880,7.86
+AI-ML-AU,AI Automation,ai automation australia,Phrase,Active,50,3.75
+AI-ML-AU,AI Automation,ai automation agency,Phrase,Active,390,5.37
+AI-ML-AU,AI Automation,business automation agency,Phrase,Active,390,8.82
+AI-ML-AU,AI Automation,ai implementation australia,Phrase,Active,20,0
