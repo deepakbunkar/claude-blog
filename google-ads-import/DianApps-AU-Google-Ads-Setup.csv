@@ -1,5 +1,5 @@
 CAMPAIGN 1: AppDev-AU,,,,,
-Daily Budget: AUD $40,,,,,
+Daily Budget: AUD $20 (start half then scale),,,,,
 Goal: Lead Generation,,,,,
 Bid Strategy: Maximize Conversions,,,,,
 Location: Australia,,,,,
@@ -76,72 +76,111 @@ Final URL,https://dianapps.com/technology-partner-australia,,,,
 ==========,,,,,
 ,,,,,
 CAMPAIGN 2: AI-ML-AU,,,,,
-Daily Budget: AUD $35,,,,,
+Daily Budget: AUD $17 (start half then scale),,,,,
 Goal: Lead Generation,,,,,
 Bid Strategy: Maximize Conversions,,,,,
 Location: Australia,,,,,
 Landing Page: https://dianapps.com/technology-partner-australia,,,,,
 ,,,,,
-AD GROUP,KEYWORD,MATCH TYPE,MONTHLY VOLUME (AU),CPC (AUD),STATUS
+AD GROUP,KEYWORD,MATCH TYPE,MONTHLY VOLUME (AU),CPC (AUD),SOURCE
 ,,,,,
---- Ad Group 1: AI Agency & Consulting ---,,,,,
-AI Agency & Consulting,ai agency,Phrase,1300,5.60,Add
-AI Agency & Consulting,ai agency australia,Phrase,260,6.22,Add
-AI Agency & Consulting,ai consultant,Phrase,480,5.78,Add
-AI Agency & Consulting,ai consulting australia,Phrase,170,7.12,Add
-AI Agency & Consulting,ai consultancy,Phrase,390,5.78,Add
-AI Agency & Consulting,artificial intelligence consulting,Phrase,480,5.78,Add
-AI Agency & Consulting,ai for business,Phrase,480,7.35,Add
-AI Agency & Consulting,ai marketing agency,Phrase,480,6.91,Add
+--- Ad Group 1: AI Development Company (27 keywords) ---,,,,,
+AI Development Company,ai consulting services,Phrase,480,10.21,Competitor (mantelgroup #3)
+AI Development Company,ai consultants,Phrase,260,5.57,Competitor (mantelgroup #7)
+AI Development Company,ai consulting companies,Phrase,210,8.60,Competitor (mantelgroup #8)
+AI Development Company,ai consulting company,Phrase,210,8.60,Competitor (team400 #16)
+AI Development Company,ai consulting firms,Phrase,210,8.60,Competitor (mantelgroup #13)
+AI Development Company,ai development services,Phrase,210,7.96,Competitor (concettolabs #13)
+AI Development Company,ai development company,Phrase,170,11.32,Semrush
+AI Development Company,ai consulting australia,Phrase,170,7.12,Competitor (mantelgroup #5)
+AI Development Company,ai software development,Phrase,140,5.70,Semrush
+AI Development Company,artificial intelligence development company,Phrase,140,13.94,Competitor (appther #34)
+AI Development Company,ai developers,Phrase,110,5.60,Competitor (team400 #13)
+AI Development Company,ai consulting melbourne,Phrase,90,5.31,Competitor (mantelgroup #3)
+AI Development Company,ai software development company,Phrase,70,4.75,Competitor (concettolabs #7)
+AI Development Company,ai development company in australia,Phrase,70,2.29,Semrush
+AI Development Company,ai development companies,Phrase,70,13.94,Semrush
+AI Development Company,machine learning development company,Phrase,50,0,Semrush
+AI Development Company,machine learning development services,Phrase,50,0,Semrush
+AI Development Company,ai app development company,Phrase,40,0,Semrush
+AI Development Company,ai agent development company,Phrase,40,34.44,Semrush
+AI Development Company,custom ai development company,Phrase,40,0,Semrush
+AI Development Company,hire ai developers,Phrase,40,9.80,Semrush
+AI Development Company,ai ml development company,Phrase,40,0,Semrush
+AI Development Company,machine learning development services australia,Phrase,40,0,Semrush
+AI Development Company,generative ai development company,Phrase,30,0,Semrush
+AI Development Company,ai and machine learning development services,Phrase,30,0,Semrush
+AI Development Company,outsource ai,Phrase,20,15.09,Semrush
+AI Development Company,agentic ai development company,Phrase,20,0,Semrush
 ,,,,,
-AD COPY FOR: AI Agency & Consulting,,,,,
-Headline 1,Top AI Agency Australia,,,,
-Headline 2,AI Consulting & Implementation,,,,
-Headline 3,AI Pilot to Production 90 Days,,,,
-Headline 4,AI Strategy That Delivers ROI,,,,
-Headline 5,Generative AI & LLM Experts,,,,
+AD COPY FOR: AI Development Company,,,,,
+Headline 1,Top AI Development Company AU,,,,
+Headline 2,AI Software Development,,,,
+Headline 3,350+ Projects Delivered,,,,
+Headline 4,Generative AI & LLM Experts,,,,
+Headline 5,ML Computer Vision NLP,,,,
+Headline 6,Free AI Consultation,,,,
+Description 1,"Leading AI development company in Australia. Custom AI solutions ML models generative AI agentic AI. From strategy to production. Free consultation.",,,,
+Description 2,"AI software development trusted by 50+ companies. We build custom AI products that deliver real business results. 90-day delivery. Talk to us.",,,,
+Final URL,https://dianapps.com/technology-partner-australia,,,,
+,,,,,
+--- Ad Group 2: AI Solutions & Integration (23 keywords) ---,,,,,
+AI Solutions & Integration,ai workflow automation,Phrase,320,8.97,Semrush
+AI Solutions & Integration,ai services,Phrase,320,4.74,Competitor (mantelgroup #22)
+AI Solutions & Integration,ai strategy consulting,Phrase,260,10.74,Competitor (team400 #41)
+AI Solutions & Integration,ai advisory,Phrase,170,10.62,Competitor (mantelgroup #75)
+AI Solutions & Integration,custom ai solutions,Phrase,140,0,Semrush
+AI Solutions & Integration,enterprise ai solutions,Phrase,140,0,Semrush
+AI Solutions & Integration,ai solutions provider,Phrase,110,0,Competitor (mantelgroup #6)
+AI Solutions & Integration,ai implementation consultant,Phrase,110,8.06,Competitor (mantelgroup #20)
+AI Solutions & Integration,ai process automation,Phrase,90,0,Semrush
+AI Solutions & Integration,intelligent automation services,Phrase,90,0,Semrush
+AI Solutions & Integration,ai document processing,Phrase,90,12.42,Semrush
+AI Solutions & Integration,ai business consulting,Phrase,90,8.42,Competitor (mantelgroup #6)
+AI Solutions & Integration,ai for manufacturing,Phrase,90,8.30,Competitor (team400 #20)
+AI Solutions & Integration,generative ai services,Phrase,70,0,Semrush
+AI Solutions & Integration,ai solutions for business,Phrase,50,13.98,Semrush
+AI Solutions & Integration,machine learning consulting,Phrase,50,2.88,Semrush
+AI Solutions & Integration,ai agent development,Phrase,40,8.94,Semrush
+AI Solutions & Integration,ai integration services,Phrase,40,10.82,Semrush
+AI Solutions & Integration,ai product development,Phrase,30,8.44,Semrush
+AI Solutions & Integration,ai recommendation engine,Phrase,30,0,Semrush
+AI Solutions & Integration,rag development,Phrase,20,4.62,Semrush
+AI Solutions & Integration,rag implementation,Phrase,20,2.44,Semrush
+AI Solutions & Integration,agentic ai development,Phrase,20,9.19,Semrush
+,,,,,
+AD COPY FOR: AI Solutions & Integration,,,,,
+Headline 1,AI Solutions for AU Business,,,,
+Headline 2,AI Strategy & Implementation,,,,
+Headline 3,AI Workflow Automation,,,,
+Headline 4,Enterprise AI Integration,,,,
+Headline 5,Proven ROI in 90 Days,,,,
 Headline 6,Free AI Assessment,,,,
-Description 1,"Leading AI agency in Australia. We take AI from pilot to production in 90 days. Generative AI LLM chatbots computer vision. Free AI assessment.",,,,
-Description 2,"53% of tech leaders struggle with AI ROI. We fix that. AI consulting implementation and integration into your business systems. Book a free call.",,,,
+Description 1,"AI solutions provider helping Australian businesses automate workflows integrate AI and deliver measurable ROI. Strategy to production. Free assessment.",,,,
+Description 2,"Enterprise AI solutions custom integrations and workflow automation. We implement AI that actually works for your business. Book a free AI assessment.",,,,
 Final URL,https://dianapps.com/technology-partner-australia,,,,
 ,,,,,
---- Ad Group 2: AI Company ---,,,,,
-AI Company,ai companies australia,Phrase,210,2.62,Add
-AI Company,ai companies in australia,Phrase,170,2.73,Add
-AI Company,ai company australia,Phrase,110,2.62,Add
-AI Company,ai australia,Phrase,390,2.07,Add
-AI Company,ai solutions australia,Phrase,50,0,Add
-AI Company,artificial intelligence company australia,Phrase,70,2.72,Add
-AI Company,ai development company in australia,Phrase,70,2.29,Add
-AI Company,ai development company australia,Phrase,40,0,Add
+--- Ad Group 3: AI Chatbot Development (10 keywords) ---,,,,,
+AI Chatbot Development,ai chatbot development agency australia,Phrase,90,0,Semrush
+AI Chatbot Development,chatbot development services,Phrase,70,0,Semrush
+AI Chatbot Development,ai chatbot development,Phrase,50,9.51,Semrush
+AI Chatbot Development,ai chatbot for business,Phrase,50,13.73,Semrush
+AI Chatbot Development,build ai chatbot,Phrase,50,4.29,Semrush
+AI Chatbot Development,chatbot development company,Phrase,30,0,Semrush
+AI Chatbot Development,custom chatbot development,Phrase,30,0,Semrush
+AI Chatbot Development,ai chatbot developers sydney,Phrase,20,0,Semrush
+AI Chatbot Development,ai chatbot developers melbourne,Phrase,20,0,Semrush
+AI Chatbot Development,natural language processing services,Phrase,20,0,Semrush
 ,,,,,
-AD COPY FOR: AI Company,,,,,
-Headline 1,AI Development Company AU,,,,
-Headline 2,Artificial Intelligence Australia,,,,
-Headline 3,AI Solutions for Business,,,,
-Headline 4,Custom AI Development,,,,
-Headline 5,ML & Deep Learning Experts,,,,
-Headline 6,Trusted by 50+ Companies,,,,
-Description 1,"AI development company trusted by Australian businesses. Custom AI solutions ML models generative AI. From strategy to production. Free consultation.",,,,
-Description 2,"Looking for an AI company in Australia? We build custom AI solutions that deliver real business results. 90-day delivery guaranteed. Talk to us.",,,,
-Final URL,https://dianapps.com/technology-partner-australia,,,,
-,,,,,
---- Ad Group 3: AI Automation ---,,,,,
-AI Automation,ai automation,Phrase,880,7.86,Add
-AI Automation,ai automation australia,Phrase,50,3.75,Add
-AI Automation,ai automation agency,Phrase,390,5.37,Add
-AI Automation,business automation agency,Phrase,390,8.82,Add
-AI Automation,ai implementation australia,Phrase,20,0,Add
-,,,,,
-AD COPY FOR: AI Automation,,,,,
-Headline 1,AI Automation for Business,,,,
-Headline 2,Automate With AI Australia,,,,
-Headline 3,Business Process Automation,,,,
-Headline 4,Cut Costs With AI,,,,
-Headline 5,AI Workflow Automation,,,,
-Headline 6,Free Automation Assessment,,,,
-Description 1,"AI automation agency helping Australian businesses cut costs and scale operations. Workflow automation AI agents process automation. Free assessment.",,,,
-Description 2,"Stop doing manually what AI can automate. We build custom AI automation solutions for Australian businesses. Proven ROI. Book a free assessment.",,,,
+AD COPY FOR: AI Chatbot Development,,,,,
+Headline 1,AI Chatbot Development AU,,,,
+Headline 2,Custom Chatbots for Business,,,,
+Headline 3,GPT WhatsApp Voice Bots,,,,
+Headline 4,Sydney & Melbourne Teams,,,,
+Headline 5,Build AI Chatbot in 4 Weeks,,,,
+Headline 6,Free Chatbot Consultation,,,,
+Description 1,"AI chatbot development agency in Australia. Custom chatbots for customer support sales and automation. GPT-powered WhatsApp voice web bots. Free consult.",,,,
+Description 2,"Build a custom AI chatbot for your business. We develop intelligent chatbots that reduce support costs and increase conversions. Free consultation.",,,,
 Final URL,https://dianapps.com/technology-partner-australia,,,,
 ,,,,,
 ,,,,,
@@ -149,28 +188,32 @@ Final URL,https://dianapps.com/technology-partner-australia,,,,
 ,,,,,
 NEGATIVE KEYWORDS (Add to Both Campaigns),,,,,
 ,,,,,
-KEYWORD,MATCH TYPE,APPLY TO,,,,
-jobs,Broad,Both campaigns,,,,
-career,Broad,Both campaigns,,,,
-salary,Broad,Both campaigns,,,,
-resume,Broad,Both campaigns,,,,
-internship,Broad,Both campaigns,,,,
-certification,Broad,Both campaigns,,,,
-course,Broad,Both campaigns,,,,
-training,Broad,Both campaigns,,,,
-free,Broad,Both campaigns,,,,
-tutorial,Broad,Both campaigns,,,,
-what is,Broad,Both campaigns,,,,
-definition,Broad,Both campaigns,,,,
-Wikipedia,Broad,Both campaigns,,,,
-cheap,Broad,Both campaigns,,,,
-cheapest,Broad,Both campaigns,,,,
-student,Broad,Both campaigns,,,,
-learn,Broad,Both campaigns,,,,
-template,Broad,Both campaigns,,,,
-open source,Broad,Both campaigns,,,,
-DIY,Broad,Both campaigns,,,,
-invest,Broad,AI-ML-AU only,,,,
-stock,Broad,AI-ML-AU only,,,,
-ASX,Broad,AI-ML-AU only,,,,
-shares,Broad,AI-ML-AU only,,,,
+KEYWORD,MATCH TYPE,APPLY TO,,,
+jobs,Broad,Both campaigns,,,
+career,Broad,Both campaigns,,,
+salary,Broad,Both campaigns,,,
+resume,Broad,Both campaigns,,,
+internship,Broad,Both campaigns,,,
+certification,Broad,Both campaigns,,,
+course,Broad,Both campaigns,,,
+training,Broad,Both campaigns,,,
+free,Broad,Both campaigns,,,
+tutorial,Broad,Both campaigns,,,
+what is,Broad,Both campaigns,,,
+definition,Broad,Both campaigns,,,
+Wikipedia,Broad,Both campaigns,,,
+cheap,Broad,Both campaigns,,,
+cheapest,Broad,Both campaigns,,,
+student,Broad,Both campaigns,,,
+learn,Broad,Both campaigns,,,
+template,Broad,Both campaigns,,,
+open source,Broad,Both campaigns,,,
+DIY,Broad,Both campaigns,,,
+invest,Broad,AI-ML-AU only,,,
+stock,Broad,AI-ML-AU only,,,
+ASX,Broad,AI-ML-AU only,,,
+shares,Broad,AI-ML-AU only,,,
+podcast,Broad,AI-ML-AU only,,,
+code assistant,Broad,AI-ML-AU only,,,
+openai,Broad,AI-ML-AU only,,,
+azure,Broad,AI-ML-AU only,,,
