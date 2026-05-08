@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>DianApps LinkedIn Single Image Ad - AI/ML Engineer 48 Hours</title>
+<title>DianApps LinkedIn Ad - AI/ML Engineer 48 Hours</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0a0a0a; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; gap: 30px; }
+  body { background: #0a0a0a; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; gap: 40px; }
   h1 { color: #fff; font-size: 20px; opacity: 0.4; font-weight: 400; }
   .label { color: #6366f1; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
   canvas { border: 1px solid #222; max-width: 100%; height: auto; }
@@ -17,20 +17,18 @@
 </head>
 <body>
 
-<h1>LinkedIn Single Image Ad — Hire AI/ML Engineer in 48 Hours</h1>
+<h1>LinkedIn Ad — Hire AI/ML Engineer in 48 Hours</h1>
 
 <div class="ad-wrap">
-  <div class="label">1200 x 627 — LinkedIn Newsfeed (Desktop)</div>
+  <div class="label">1200 x 627 — LinkedIn Newsfeed</div>
   <canvas id="c1" width="1200" height="627"></canvas>
-  <button class="download-btn" onclick="dl('c1','dianapps-ai-ml-48hr-newsfeed.png')">Download Newsfeed Format (1200x627)</button>
-  <div class="specs">Use this for: LinkedIn single image ads, Sponsored Content, Newsfeed</div>
+  <button class="download-btn" onclick="dl('c1','dianapps-ai-ml-48hr-newsfeed.png')">Download Newsfeed (1200x627)</button>
 </div>
 
 <div class="ad-wrap">
   <div class="label">1200 x 1200 — Square Format</div>
   <canvas id="c2" width="1200" height="1200"></canvas>
-  <button class="download-btn" onclick="dl('c2','dianapps-ai-ml-48hr-square.png')">Download Square Format (1200x1200)</button>
-  <div class="specs">Use this for: LinkedIn mobile feed, Instagram cross-posting</div>
+  <button class="download-btn" onclick="dl('c2','dianapps-ai-ml-48hr-square.png')">Download Square (1200x1200)</button>
 </div>
 
 <script>
@@ -71,87 +69,224 @@ function drawWhiteLogo(ctx, logo, x, y, h) {
   ctx.drawImage(tmp, x, y);
 }
 
-// Stopwatch/Timer graphic showing 48:00
+// === NEURAL NETWORK GRAPHIC ===
+function drawNeuralNetwork(ctx, cx, cy, scale) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.scale(scale, scale);
+
+  // 4 layers of nodes
+  const layers = [
+    { x: -180, count: 3 },
+    { x: -60, count: 5 },
+    { x: 60, count: 5 },
+    { x: 180, count: 3 }
+  ];
+
+  const positions = layers.map(layer => {
+    const spacing = 50;
+    const startY = -((layer.count - 1) * spacing) / 2;
+    return Array.from({ length: layer.count }, (_, i) => ({
+      x: layer.x,
+      y: startY + i * spacing
+    }));
+  });
+
+  // Draw connections (lines between layers)
+  for (let l = 0; l < positions.length - 1; l++) {
+    for (const a of positions[l]) {
+      for (const b of positions[l + 1]) {
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.strokeStyle = 'rgba(99, 102, 241, 0.25)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+  }
+
+  // Draw nodes
+  positions.forEach((layer, layerIdx) => {
+    layer.forEach(node => {
+      const colors = ['#06b6d4', '#6366f1', '#8b5cf6', '#a5b4fc'];
+      // Outer glow
+      const g = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, 18);
+      g.addColorStop(0, colors[layerIdx]);
+      g.addColorStop(1, 'transparent');
+      ctx.fillStyle = g;
+      ctx.globalAlpha = 0.5;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, 18, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      // Solid node
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, 8, 0, Math.PI * 2);
+      ctx.fillStyle = colors[layerIdx];
+      ctx.fill();
+      // Inner highlight
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill();
+    });
+  });
+
+  ctx.restore();
+}
+
+// === BRAIN/AI ICON ===
+function drawBrainIcon(ctx, cx, cy, size) {
+  ctx.save();
+  ctx.translate(cx, cy);
+
+  // Brain outline (simplified)
+  ctx.strokeStyle = '#a5b4fc';
+  ctx.lineWidth = 3;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  // Left half
+  ctx.beginPath();
+  ctx.moveTo(-size * 0.3, -size * 0.5);
+  ctx.bezierCurveTo(-size * 0.8, -size * 0.5, -size * 0.8, size * 0.4, -size * 0.3, size * 0.5);
+  ctx.lineTo(-size * 0.05, size * 0.5);
+  ctx.lineTo(-size * 0.05, -size * 0.5);
+  ctx.closePath();
+  ctx.stroke();
+
+  // Right half
+  ctx.beginPath();
+  ctx.moveTo(size * 0.3, -size * 0.5);
+  ctx.bezierCurveTo(size * 0.8, -size * 0.5, size * 0.8, size * 0.4, size * 0.3, size * 0.5);
+  ctx.lineTo(size * 0.05, size * 0.5);
+  ctx.lineTo(size * 0.05, -size * 0.5);
+  ctx.closePath();
+  ctx.stroke();
+
+  // Internal lines (synapses)
+  ctx.strokeStyle = 'rgba(165, 180, 252, 0.5)';
+  ctx.lineWidth = 1.5;
+  for (let i = -2; i <= 2; i++) {
+    ctx.beginPath();
+    ctx.moveTo(-size * 0.6, i * size * 0.15);
+    ctx.lineTo(-size * 0.2, i * size * 0.15);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(size * 0.2, i * size * 0.15);
+    ctx.lineTo(size * 0.6, i * size * 0.15);
+    ctx.stroke();
+  }
+
+  ctx.restore();
+}
+
+// === CODE BRACKETS ICON ===
+function drawCodeBrackets(ctx, cx, cy, size, color) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.strokeStyle = color || '#a5b4fc';
+  ctx.lineWidth = 4;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  // Left bracket <
+  ctx.beginPath();
+  ctx.moveTo(-size * 0.4, -size * 0.4);
+  ctx.lineTo(-size * 0.7, 0);
+  ctx.lineTo(-size * 0.4, size * 0.4);
+  ctx.stroke();
+
+  // Right bracket >
+  ctx.beginPath();
+  ctx.moveTo(size * 0.4, -size * 0.4);
+  ctx.lineTo(size * 0.7, 0);
+  ctx.lineTo(size * 0.4, size * 0.4);
+  ctx.stroke();
+
+  // Slash /
+  ctx.beginPath();
+  ctx.moveTo(-size * 0.15, size * 0.5);
+  ctx.lineTo(size * 0.15, -size * 0.5);
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+// === STOPWATCH (simplified, repositioned) ===
 function drawStopwatch(ctx, cx, cy, scale) {
   ctx.save();
   ctx.translate(cx, cy);
   ctx.scale(scale, scale);
 
-  // Outer glow ring
-  const glowGrad = ctx.createRadialGradient(0, 0, 100, 0, 0, 220);
-  glowGrad.addColorStop(0, 'rgba(99, 102, 241, 0.25)');
+  // Outer glow
+  const glowGrad = ctx.createRadialGradient(0, 0, 80, 0, 0, 180);
+  glowGrad.addColorStop(0, 'rgba(99, 102, 241, 0.3)');
   glowGrad.addColorStop(1, 'transparent');
   ctx.fillStyle = glowGrad;
-  ctx.fillRect(-220, -220, 440, 440);
+  ctx.fillRect(-180, -180, 360, 360);
 
-  // Top button (stopwatch crown)
+  // Top button
   ctx.fillStyle = '#6366f1';
-  rr(ctx, -25, -185, 50, 25, 6);
+  rr(ctx, -22, -160, 44, 22, 6);
   ctx.fill();
-  // Crown stem
-  rr(ctx, -8, -165, 16, 12, 2);
+  rr(ctx, -7, -142, 14, 10, 2);
   ctx.fill();
 
-  // Outer ring (border)
+  // Outer ring
   ctx.beginPath();
-  ctx.arc(0, 0, 165, 0, Math.PI * 2);
+  ctx.arc(0, 0, 140, 0, Math.PI * 2);
   ctx.strokeStyle = '#6366f1';
-  ctx.lineWidth = 4;
+  ctx.lineWidth = 5;
   ctx.stroke();
 
-  // Inner dial background
+  // Inner background
   ctx.beginPath();
-  ctx.arc(0, 0, 155, 0, Math.PI * 2);
+  ctx.arc(0, 0, 132, 0, Math.PI * 2);
   ctx.fillStyle = '#0f1125';
   ctx.fill();
 
-  // Tick marks (12 large, 60 small)
+  // Tick marks
   for (let i = 0; i < 60; i++) {
     const angle = (i / 60) * Math.PI * 2 - Math.PI / 2;
     const isLarge = i % 5 === 0;
-    const innerR = isLarge ? 130 : 140;
-    const outerR = 150;
-    const x1 = Math.cos(angle) * innerR;
-    const y1 = Math.sin(angle) * innerR;
-    const x2 = Math.cos(angle) * outerR;
-    const y2 = Math.sin(angle) * outerR;
+    const innerR = isLarge ? 110 : 120;
+    const outerR = 128;
     ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
+    ctx.moveTo(Math.cos(angle) * innerR, Math.sin(angle) * innerR);
+    ctx.lineTo(Math.cos(angle) * outerR, Math.sin(angle) * outerR);
     ctx.strokeStyle = isLarge ? '#a5b4fc' : 'rgba(255,255,255,0.2)';
     ctx.lineWidth = isLarge ? 3 : 1.5;
     ctx.stroke();
   }
 
-  // Progress arc (showing 48 minutes mark - around 288 degrees from top)
-  // 48/60 of a full circle = 0.8
+  // Progress arc (48 minutes = 80% of full circle)
   ctx.beginPath();
-  ctx.arc(0, 0, 145, -Math.PI / 2, -Math.PI / 2 + (48/60) * Math.PI * 2);
+  ctx.arc(0, 0, 124, -Math.PI / 2, -Math.PI / 2 + (48/60) * Math.PI * 2);
   ctx.strokeStyle = '#6366f1';
   ctx.lineWidth = 6;
   ctx.lineCap = 'round';
   ctx.stroke();
 
-  // 48:00 text in center
-  ctx.font = '900 70px Inter, system-ui, sans-serif';
+  // 48 text
+  ctx.font = '900 80px Inter, system-ui, sans-serif';
   ctx.fillStyle = '#ffffff';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('48:00', 0, -10);
+  ctx.fillText('48', 0, -8);
 
   // HOURS label
-  ctx.font = '700 16px Inter, system-ui, sans-serif';
+  ctx.font = '700 14px Inter, system-ui, sans-serif';
   ctx.fillStyle = '#a5b4fc';
-  ctx.letterSpacing = '4px';
-  ctx.fillText('HOURS', 0, 35);
+  ctx.fillText('HOURS', 0, 32);
 
-  // Clock hand (minute hand pointing to 48 = roughly 4:48 position)
+  // Clock hand
   ctx.save();
-  // 48 minutes = 288 degrees from 12 o'clock
   const handAngle = (48 / 60) * Math.PI * 2 - Math.PI / 2;
   ctx.rotate(handAngle);
   ctx.fillStyle = '#8b5cf6';
-  rr(ctx, -3, -8, 6, 130, 3);
+  rr(ctx, -3, -8, 6, 110, 3);
   ctx.fill();
   ctx.restore();
 
@@ -168,8 +303,51 @@ function drawStopwatch(ctx, cx, cy, scale) {
   ctx.restore();
 }
 
-// Background gradient mesh blobs
-function drawBgBlobs(ctx, w, h, variant) {
+// === FLOATING DATA POINTS / PARTICLES ===
+function drawDataParticles(ctx, w, h) {
+  ctx.save();
+  // Random positioned glowing dots
+  const seed = 42;
+  let s = seed;
+  function rand() { s = (s * 9301 + 49297) % 233280; return s / 233280; }
+
+  for (let i = 0; i < 60; i++) {
+    const x = rand() * w;
+    const y = rand() * h;
+    const size = rand() * 3 + 1;
+    const opacity = rand() * 0.5 + 0.2;
+    ctx.globalAlpha = opacity;
+    ctx.fillStyle = ['#6366f1', '#8b5cf6', '#06b6d4', '#a5b4fc'][Math.floor(rand() * 4)];
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+// === BACKGROUND GRID PATTERN ===
+function drawGrid(ctx, w, h) {
+  ctx.save();
+  ctx.strokeStyle = 'rgba(99, 102, 241, 0.05)';
+  ctx.lineWidth = 1;
+  const spacing = 40;
+  for (let x = 0; x < w; x += spacing) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, h);
+    ctx.stroke();
+  }
+  for (let y = 0; y < h; y += spacing) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(w, y);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+// === GRADIENT MESH BACKGROUND ===
+function drawBg(ctx, w, h) {
   ctx.fillStyle = '#050510';
   ctx.fillRect(0, 0, w, h);
 
@@ -184,32 +362,19 @@ function drawBgBlobs(ctx, w, h, variant) {
     ctx.restore();
   }
 
-  if (variant === 'wide') {
-    blob(150, 150, 350, '#6366f1', 0.35);
-    blob(w - 150, h - 100, 400, '#8b5cf6', 0.3);
-    blob(w / 2, h / 2, 300, '#06b6d4', 0.15);
-    blob(50, h - 50, 250, '#ec4899', 0.1);
-  } else {
-    blob(200, 200, 400, '#6366f1', 0.35);
-    blob(w - 200, h - 200, 400, '#8b5cf6', 0.3);
-    blob(w / 2, h / 2, 350, '#06b6d4', 0.15);
-    blob(80, h - 100, 280, '#ec4899', 0.12);
-  }
+  blob(150, 150, 400, '#6366f1', 0.4);
+  blob(w - 150, h - 100, 450, '#8b5cf6', 0.35);
+  blob(w * 0.7, 100, 300, '#06b6d4', 0.25);
+  blob(50, h - 50, 250, '#ec4899', 0.15);
 
-  // Noise grain
-  ctx.save();
-  ctx.globalAlpha = 0.04;
-  for (let i = 0; i < 5000; i++) {
-    ctx.fillStyle = Math.random() > 0.5 ? '#fff' : '#000';
-    ctx.fillRect(Math.random() * w, Math.random() * h, 1, 1);
-  }
-  ctx.restore();
+  drawGrid(ctx, w, h);
+  drawDataParticles(ctx, w, h);
 }
 
-// ===== NEWSFEED 1200 x 627 =====
+// === NEWSFEED 1200 x 627 ===
 function drawNewsfeed(ctx, logo) {
   const W = 1200, H = 627;
-  drawBgBlobs(ctx, W, H, 'wide');
+  drawBg(ctx, W, H);
 
   // Top accent bar
   const accentG = ctx.createLinearGradient(60, 0, 160, 0);
@@ -220,12 +385,39 @@ function drawNewsfeed(ctx, logo) {
   ctx.fill();
 
   // Logo top-left
-  drawWhiteLogo(ctx, logo, 60, 80, 40);
+  drawWhiteLogo(ctx, logo, 60, 80, 36);
 
-  // Stopwatch on right side
-  drawStopwatch(ctx, 920, 313, 1.0);
+  // === RIGHT SIDE: Composite graphic ===
+  // Stopwatch (centerpiece, slightly smaller)
+  drawStopwatch(ctx, 950, 280, 0.85);
 
-  // Headline (left side)
+  // Neural network behind/around stopwatch
+  ctx.globalAlpha = 0.8;
+  drawNeuralNetwork(ctx, 950, 470, 0.6);
+  ctx.globalAlpha = 1;
+
+  // Brain icon (top-left of stopwatch zone)
+  drawBrainIcon(ctx, 800, 130, 50);
+
+  // Code brackets (top-right of stopwatch zone)
+  drawCodeBrackets(ctx, 1100, 130, 40, '#06b6d4');
+
+  // Connecting line graphic (subtle)
+  ctx.strokeStyle = 'rgba(99, 102, 241, 0.2)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(820, 150);
+  ctx.lineTo(900, 250);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(1080, 150);
+  ctx.lineTo(1000, 250);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // === LEFT SIDE: Text content ===
+  // Headline
   ctx.textAlign = 'left';
   ctx.font = '900 56px Inter, system-ui, sans-serif';
   ctx.fillStyle = '#ffffff';
@@ -237,35 +429,40 @@ function drawNewsfeed(ctx, logo) {
   ctx.fillText('48 Hours.', 60, 360);
 
   // Sub-text
-  ctx.font = '500 24px Inter, system-ui, sans-serif';
+  ctx.font = '500 22px Inter, system-ui, sans-serif';
   ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-  ctx.fillText('Pre-vetted. Senior-level. Ready to build.', 60, 420);
+  ctx.fillText('Pre-vetted. Senior-level. Ready to build.', 60, 415);
 
-  // CTA pill
-  const btnG = ctx.createLinearGradient(60, 0, 320, 0);
+  // CTA button
+  ctx.save();
+  ctx.shadowColor = 'rgba(99, 102, 241, 0.5)';
+  ctx.shadowBlur = 25;
+  ctx.shadowOffsetY = 6;
+  const btnG = ctx.createLinearGradient(60, 0, 340, 0);
   btnG.addColorStop(0, '#6366f1');
   btnG.addColorStop(1, '#8b5cf6');
   ctx.fillStyle = btnG;
-  rr(ctx, 60, 470, 280, 60, 30);
+  rr(ctx, 60, 460, 290, 60, 30);
   ctx.fill();
+  ctx.restore();
   ctx.font = '700 20px Inter, system-ui, sans-serif';
   ctx.fillStyle = '#ffffff';
   ctx.textAlign = 'center';
-  ctx.fillText('Get Matched Now →', 200, 508);
+  ctx.fillText('Get Matched Now →', 205, 498);
 
-  // Trust signal bottom-left
+  // Trust signal bottom
   ctx.textAlign = 'left';
-  ctx.font = '500 14px Inter, system-ui, sans-serif';
+  ctx.font = '500 13px Inter, system-ui, sans-serif';
   ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-  ctx.fillText('40+ AI products shipped  |  USA & Australia', 60, 570);
+  ctx.fillText('40+ AI products shipped  |  USA & Australia  |  End-to-end delivery', 60, 575);
 }
 
-// ===== SQUARE 1200 x 1200 =====
+// === SQUARE 1200 x 1200 ===
 function drawSquare(ctx, logo) {
   const W = 1200, H = 1200;
-  drawBgBlobs(ctx, W, H, 'square');
+  drawBg(ctx, W, H);
 
-  // Top accent bar
+  // Top accent
   const accentG = ctx.createLinearGradient(80, 0, 180, 0);
   accentG.addColorStop(0, '#6366f1');
   accentG.addColorStop(1, '#8b5cf6');
@@ -276,38 +473,69 @@ function drawSquare(ctx, logo) {
   // Logo top-left
   drawWhiteLogo(ctx, logo, 80, 110, 50);
 
-  // Stopwatch centered top
-  drawStopwatch(ctx, 600, 430, 1.3);
+  // Top-right code brackets
+  drawCodeBrackets(ctx, 1080, 130, 50, '#06b6d4');
 
-  // Headline (centered below stopwatch)
+  // === COMPOSITE GRAPHIC: Stopwatch + Neural network ===
+  drawStopwatch(ctx, 600, 380, 1.4);
+
+  // Neural network below stopwatch
+  drawNeuralNetwork(ctx, 600, 620, 0.95);
+
+  // Brain icon left of stopwatch
+  drawBrainIcon(ctx, 230, 380, 70);
+
+  // Code icon right of stopwatch
+  drawCodeBrackets(ctx, 970, 380, 60, '#06b6d4');
+
+  // Connecting dotted lines
+  ctx.strokeStyle = 'rgba(99, 102, 241, 0.25)';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([5, 5]);
+  ctx.beginPath();
+  ctx.moveTo(290, 380);
+  ctx.lineTo(450, 380);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(750, 380);
+  ctx.lineTo(910, 380);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // === Text section bottom ===
   ctx.textAlign = 'center';
-  ctx.font = '900 72px Inter, system-ui, sans-serif';
+  ctx.font = '900 64px Inter, system-ui, sans-serif';
   ctx.fillStyle = '#ffffff';
-  ctx.fillText('Hire an AI/ML Engineer', 600, 750);
+  ctx.fillText('Hire an AI/ML Engineer', 600, 800);
 
   ctx.fillStyle = '#a5b4fc';
-  ctx.fillText('in 48 Hours.', 600, 830);
+  ctx.fillText('in 48 Hours.', 600, 875);
 
   // Sub-text
-  ctx.font = '500 32px Inter, system-ui, sans-serif';
+  ctx.font = '500 28px Inter, system-ui, sans-serif';
   ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-  ctx.fillText('Pre-vetted. Senior-level. Ready to build.', 600, 905);
+  ctx.fillText('Pre-vetted. Senior-level. Ready to build.', 600, 940);
 
-  // CTA pill centered
+  // CTA button
+  ctx.save();
+  ctx.shadowColor = 'rgba(99, 102, 241, 0.5)';
+  ctx.shadowBlur = 30;
+  ctx.shadowOffsetY = 8;
   const btnG = ctx.createLinearGradient(380, 0, 820, 0);
   btnG.addColorStop(0, '#6366f1');
   btnG.addColorStop(1, '#8b5cf6');
   ctx.fillStyle = btnG;
-  rr(ctx, 380, 970, 440, 80, 40);
+  rr(ctx, 380, 990, 440, 80, 40);
   ctx.fill();
-  ctx.font = '700 28px Inter, system-ui, sans-serif';
+  ctx.restore();
+  ctx.font = '700 26px Inter, system-ui, sans-serif';
   ctx.fillStyle = '#ffffff';
-  ctx.fillText('Get Matched Now →', 600, 1020);
+  ctx.fillText('Get Matched Now →', 600, 1040);
 
   // Trust signal bottom
-  ctx.font = '500 18px Inter, system-ui, sans-serif';
+  ctx.font = '500 16px Inter, system-ui, sans-serif';
   ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-  ctx.fillText('40+ AI products shipped  |  USA & Australia', 600, 1100);
+  ctx.fillText('40+ AI products shipped  |  USA & Australia  |  End-to-end delivery', 600, 1120);
 }
 
 async function init() {
