@@ -5,30 +5,29 @@
 <title>DianApps LinkedIn Ad - AI/ML Engineer 48 Hours</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0a0a0a; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; gap: 40px; }
+  body { background: #1a1a1a; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; gap: 40px; }
   h1 { color: #fff; font-size: 20px; opacity: 0.4; font-weight: 400; }
   .label { color: #6366f1; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
-  canvas { border: 1px solid #222; max-width: 100%; height: auto; }
+  canvas { border: 1px solid #333; max-width: 100%; height: auto; }
   .download-btn { display: inline-block; margin-top: 12px; padding: 12px 28px; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; font-family: inherit; font-weight: 600; }
   .download-btn:hover { opacity: 0.9; }
   .ad-wrap { display: flex; flex-direction: column; align-items: center; }
-  .specs { color: #fff; opacity: 0.5; font-size: 12px; margin-top: 8px; }
 </style>
 </head>
 <body>
 
-<h1>LinkedIn Ad — Hire AI/ML Engineer in 48 Hours</h1>
+<h1>LinkedIn Ad — Hire AI/ML Engineer in 48 Hours (Light theme)</h1>
+
+<div class="ad-wrap">
+  <div class="label">1200 x 1200 — Square (Recommended)</div>
+  <canvas id="c2" width="1200" height="1200"></canvas>
+  <button class="download-btn" onclick="dl('c2','dianapps-ai-ml-48hr-square.png')">Download Square (1200x1200)</button>
+</div>
 
 <div class="ad-wrap">
   <div class="label">1200 x 627 — LinkedIn Newsfeed</div>
   <canvas id="c1" width="1200" height="627"></canvas>
   <button class="download-btn" onclick="dl('c1','dianapps-ai-ml-48hr-newsfeed.png')">Download Newsfeed (1200x627)</button>
-</div>
-
-<div class="ad-wrap">
-  <div class="label">1200 x 1200 — Square Format</div>
-  <canvas id="c2" width="1200" height="1200"></canvas>
-  <button class="download-btn" onclick="dl('c2','dianapps-ai-ml-48hr-square.png')">Download Square (1200x1200)</button>
 </div>
 
 <script>
@@ -54,488 +53,579 @@ function rr(ctx, x, y, w, h, r) {
   ctx.closePath();
 }
 
-function drawWhiteLogo(ctx, logo, x, y, h) {
+// Logo as-is (full color, since background is light)
+function drawLogoColor(ctx, logo, x, y, h) {
   if (!logo) return;
   const asp = logo.width / logo.height;
   const w = h * asp;
-  const tmp = document.createElement('canvas');
-  tmp.width = Math.ceil(w);
-  tmp.height = Math.ceil(h);
-  const tc = tmp.getContext('2d');
-  tc.drawImage(logo, 0, 0, w, h);
-  tc.globalCompositeOperation = 'source-atop';
-  tc.fillStyle = '#ffffff';
-  tc.fillRect(0, 0, w, h);
-  ctx.drawImage(tmp, x, y);
+  ctx.drawImage(logo, x, y, w, h);
+  return w;
 }
 
-// === NEURAL NETWORK GRAPHIC ===
-function drawNeuralNetwork(ctx, cx, cy, scale) {
-  ctx.save();
-  ctx.translate(cx, cy);
-  ctx.scale(scale, scale);
+// === LIGHT GRADIENT BACKGROUND ===
+function drawLightBg(ctx, w, h) {
+  // White base
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, w, h);
 
-  // 4 layers of nodes
-  const layers = [
-    { x: -180, count: 3 },
-    { x: -60, count: 5 },
-    { x: 60, count: 5 },
-    { x: 180, count: 3 }
-  ];
+  // Subtle purple wave at top
+  const topG = ctx.createLinearGradient(0, 0, w, 0);
+  topG.addColorStop(0, 'rgba(139, 92, 246, 0.08)');
+  topG.addColorStop(0.5, 'rgba(99, 102, 241, 0.05)');
+  topG.addColorStop(1, 'rgba(139, 92, 246, 0.08)');
+  ctx.fillStyle = topG;
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(w, 0);
+  ctx.lineTo(w, h * 0.35);
+  ctx.bezierCurveTo(w * 0.7, h * 0.45, w * 0.3, h * 0.25, 0, h * 0.4);
+  ctx.closePath();
+  ctx.fill();
 
-  const positions = layers.map(layer => {
-    const spacing = 50;
-    const startY = -((layer.count - 1) * spacing) / 2;
-    return Array.from({ length: layer.count }, (_, i) => ({
-      x: layer.x,
-      y: startY + i * spacing
-    }));
-  });
+  // Soft purple blob top-right
+  const blob1 = ctx.createRadialGradient(w * 0.85, h * 0.15, 0, w * 0.85, h * 0.15, w * 0.4);
+  blob1.addColorStop(0, 'rgba(139, 92, 246, 0.15)');
+  blob1.addColorStop(1, 'transparent');
+  ctx.fillStyle = blob1;
+  ctx.fillRect(0, 0, w, h);
 
-  // Draw connections (lines between layers)
-  for (let l = 0; l < positions.length - 1; l++) {
-    for (const a of positions[l]) {
-      for (const b of positions[l + 1]) {
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle = 'rgba(99, 102, 241, 0.25)';
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
+  // Soft blue blob bottom-left
+  const blob2 = ctx.createRadialGradient(w * 0.1, h * 0.9, 0, w * 0.1, h * 0.9, w * 0.35);
+  blob2.addColorStop(0, 'rgba(99, 102, 241, 0.1)');
+  blob2.addColorStop(1, 'transparent');
+  ctx.fillStyle = blob2;
+  ctx.fillRect(0, 0, w, h);
+
+  // Subtle dot grid
+  ctx.fillStyle = 'rgba(99, 102, 241, 0.08)';
+  for (let x = 60; x < w; x += 30) {
+    for (let y = 60; y < h; y += 30) {
+      ctx.beginPath();
+      ctx.arc(x, y, 1, 0, Math.PI * 2);
+      ctx.fill();
     }
   }
-
-  // Draw nodes
-  positions.forEach((layer, layerIdx) => {
-    layer.forEach(node => {
-      const colors = ['#06b6d4', '#6366f1', '#8b5cf6', '#a5b4fc'];
-      // Outer glow
-      const g = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, 18);
-      g.addColorStop(0, colors[layerIdx]);
-      g.addColorStop(1, 'transparent');
-      ctx.fillStyle = g;
-      ctx.globalAlpha = 0.5;
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, 18, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.globalAlpha = 1;
-      // Solid node
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, 8, 0, Math.PI * 2);
-      ctx.fillStyle = colors[layerIdx];
-      ctx.fill();
-      // Inner highlight
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, 4, 0, Math.PI * 2);
-      ctx.fillStyle = '#ffffff';
-      ctx.fill();
-    });
-  });
-
-  ctx.restore();
 }
 
-// === BRAIN/AI ICON ===
-function drawBrainIcon(ctx, cx, cy, size) {
+// === STOPWATCH ICON (small, for pills) ===
+function drawSmallClock(ctx, cx, cy, size, color) {
   ctx.save();
   ctx.translate(cx, cy);
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  ctx.lineWidth = 2.5;
 
-  // Brain outline (simplified)
-  ctx.strokeStyle = '#a5b4fc';
-  ctx.lineWidth = 3;
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-
-  // Left half
+  // Outer circle
   ctx.beginPath();
-  ctx.moveTo(-size * 0.3, -size * 0.5);
-  ctx.bezierCurveTo(-size * 0.8, -size * 0.5, -size * 0.8, size * 0.4, -size * 0.3, size * 0.5);
-  ctx.lineTo(-size * 0.05, size * 0.5);
-  ctx.lineTo(-size * 0.05, -size * 0.5);
-  ctx.closePath();
+  ctx.arc(0, 0, size, 0, Math.PI * 2);
   ctx.stroke();
-
-  // Right half
-  ctx.beginPath();
-  ctx.moveTo(size * 0.3, -size * 0.5);
-  ctx.bezierCurveTo(size * 0.8, -size * 0.5, size * 0.8, size * 0.4, size * 0.3, size * 0.5);
-  ctx.lineTo(size * 0.05, size * 0.5);
-  ctx.lineTo(size * 0.05, -size * 0.5);
-  ctx.closePath();
-  ctx.stroke();
-
-  // Internal lines (synapses)
-  ctx.strokeStyle = 'rgba(165, 180, 252, 0.5)';
-  ctx.lineWidth = 1.5;
-  for (let i = -2; i <= 2; i++) {
-    ctx.beginPath();
-    ctx.moveTo(-size * 0.6, i * size * 0.15);
-    ctx.lineTo(-size * 0.2, i * size * 0.15);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(size * 0.2, i * size * 0.15);
-    ctx.lineTo(size * 0.6, i * size * 0.15);
-    ctx.stroke();
-  }
-
-  ctx.restore();
-}
-
-// === CODE BRACKETS ICON ===
-function drawCodeBrackets(ctx, cx, cy, size, color) {
-  ctx.save();
-  ctx.translate(cx, cy);
-  ctx.strokeStyle = color || '#a5b4fc';
-  ctx.lineWidth = 4;
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-
-  // Left bracket <
-  ctx.beginPath();
-  ctx.moveTo(-size * 0.4, -size * 0.4);
-  ctx.lineTo(-size * 0.7, 0);
-  ctx.lineTo(-size * 0.4, size * 0.4);
-  ctx.stroke();
-
-  // Right bracket >
-  ctx.beginPath();
-  ctx.moveTo(size * 0.4, -size * 0.4);
-  ctx.lineTo(size * 0.7, 0);
-  ctx.lineTo(size * 0.4, size * 0.4);
-  ctx.stroke();
-
-  // Slash /
-  ctx.beginPath();
-  ctx.moveTo(-size * 0.15, size * 0.5);
-  ctx.lineTo(size * 0.15, -size * 0.5);
-  ctx.stroke();
-
-  ctx.restore();
-}
-
-// === STOPWATCH (simplified, repositioned) ===
-function drawStopwatch(ctx, cx, cy, scale) {
-  ctx.save();
-  ctx.translate(cx, cy);
-  ctx.scale(scale, scale);
-
-  // Outer glow
-  const glowGrad = ctx.createRadialGradient(0, 0, 80, 0, 0, 180);
-  glowGrad.addColorStop(0, 'rgba(99, 102, 241, 0.3)');
-  glowGrad.addColorStop(1, 'transparent');
-  ctx.fillStyle = glowGrad;
-  ctx.fillRect(-180, -180, 360, 360);
 
   // Top button
-  ctx.fillStyle = '#6366f1';
-  rr(ctx, -22, -160, 44, 22, 6);
-  ctx.fill();
-  rr(ctx, -7, -142, 14, 10, 2);
+  ctx.beginPath();
+  rr(ctx, -size * 0.25, -size * 1.3, size * 0.5, size * 0.25, 2);
   ctx.fill();
 
-  // Outer ring
-  ctx.beginPath();
-  ctx.arc(0, 0, 140, 0, Math.PI * 2);
-  ctx.strokeStyle = '#6366f1';
-  ctx.lineWidth = 5;
-  ctx.stroke();
-
-  // Inner background
-  ctx.beginPath();
-  ctx.arc(0, 0, 132, 0, Math.PI * 2);
-  ctx.fillStyle = '#0f1125';
-  ctx.fill();
-
-  // Tick marks
-  for (let i = 0; i < 60; i++) {
-    const angle = (i / 60) * Math.PI * 2 - Math.PI / 2;
-    const isLarge = i % 5 === 0;
-    const innerR = isLarge ? 110 : 120;
-    const outerR = 128;
-    ctx.beginPath();
-    ctx.moveTo(Math.cos(angle) * innerR, Math.sin(angle) * innerR);
-    ctx.lineTo(Math.cos(angle) * outerR, Math.sin(angle) * outerR);
-    ctx.strokeStyle = isLarge ? '#a5b4fc' : 'rgba(255,255,255,0.2)';
-    ctx.lineWidth = isLarge ? 3 : 1.5;
-    ctx.stroke();
-  }
-
-  // Progress arc (48 minutes = 80% of full circle)
-  ctx.beginPath();
-  ctx.arc(0, 0, 124, -Math.PI / 2, -Math.PI / 2 + (48/60) * Math.PI * 2);
-  ctx.strokeStyle = '#6366f1';
-  ctx.lineWidth = 6;
+  // Clock hands (12 and 4 position)
   ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(0, -size * 0.6);
   ctx.stroke();
-
-  // 48 text
-  ctx.font = '900 80px Inter, system-ui, sans-serif';
-  ctx.fillStyle = '#ffffff';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText('48', 0, -8);
-
-  // HOURS label
-  ctx.font = '700 14px Inter, system-ui, sans-serif';
-  ctx.fillStyle = '#a5b4fc';
-  ctx.fillText('HOURS', 0, 32);
-
-  // Clock hand
-  ctx.save();
-  const handAngle = (48 / 60) * Math.PI * 2 - Math.PI / 2;
-  ctx.rotate(handAngle);
-  ctx.fillStyle = '#8b5cf6';
-  rr(ctx, -3, -8, 6, 110, 3);
-  ctx.fill();
-  ctx.restore();
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(size * 0.4, size * 0.3);
+  ctx.stroke();
 
   // Center dot
   ctx.beginPath();
-  ctx.arc(0, 0, 8, 0, Math.PI * 2);
-  ctx.fillStyle = '#8b5cf6';
+  ctx.arc(0, 0, 2.5, 0, Math.PI * 2);
   ctx.fill();
+
+  ctx.restore();
+}
+
+// === SHIELD CHECKMARK ICON ===
+function drawShieldCheck(ctx, cx, cy, size, color) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.fillStyle = color;
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2.5;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  // Shield outline
   ctx.beginPath();
-  ctx.arc(0, 0, 4, 0, Math.PI * 2);
-  ctx.fillStyle = '#ffffff';
+  ctx.moveTo(0, -size);
+  ctx.lineTo(size * 0.8, -size * 0.6);
+  ctx.lineTo(size * 0.8, size * 0.3);
+  ctx.quadraticCurveTo(size * 0.8, size * 0.9, 0, size * 1.1);
+  ctx.quadraticCurveTo(-size * 0.8, size * 0.9, -size * 0.8, size * 0.3);
+  ctx.lineTo(-size * 0.8, -size * 0.6);
+  ctx.closePath();
+  ctx.stroke();
+
+  // Checkmark inside
+  ctx.beginPath();
+  ctx.moveTo(-size * 0.35, 0);
+  ctx.lineTo(-size * 0.1, size * 0.3);
+  ctx.lineTo(size * 0.4, -size * 0.3);
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+// === SPARK / AI ICON (4-pointed star) ===
+function drawSpark(ctx, cx, cy, size, color) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.fillStyle = color;
+
+  // 4-pointed star
+  ctx.beginPath();
+  ctx.moveTo(0, -size);
+  ctx.quadraticCurveTo(size * 0.2, -size * 0.2, size, 0);
+  ctx.quadraticCurveTo(size * 0.2, size * 0.2, 0, size);
+  ctx.quadraticCurveTo(-size * 0.2, size * 0.2, -size, 0);
+  ctx.quadraticCurveTo(-size * 0.2, -size * 0.2, 0, -size);
+  ctx.closePath();
   ctx.fill();
 
   ctx.restore();
 }
 
-// === FLOATING DATA POINTS / PARTICLES ===
-function drawDataParticles(ctx, w, h) {
-  ctx.save();
-  // Random positioned glowing dots
-  const seed = 42;
-  let s = seed;
-  function rand() { s = (s * 9301 + 49297) % 233280; return s / 233280; }
-
-  for (let i = 0; i < 60; i++) {
-    const x = rand() * w;
-    const y = rand() * h;
-    const size = rand() * 3 + 1;
-    const opacity = rand() * 0.5 + 0.2;
-    ctx.globalAlpha = opacity;
-    ctx.fillStyle = ['#6366f1', '#8b5cf6', '#06b6d4', '#a5b4fc'][Math.floor(rand() * 4)];
-    ctx.beginPath();
-    ctx.arc(x, y, size, 0, Math.PI * 2);
-    ctx.fill();
-  }
-  ctx.restore();
-}
-
-// === BACKGROUND GRID PATTERN ===
-function drawGrid(ctx, w, h) {
-  ctx.save();
-  ctx.strokeStyle = 'rgba(99, 102, 241, 0.05)';
-  ctx.lineWidth = 1;
-  const spacing = 40;
-  for (let x = 0; x < w; x += spacing) {
-    ctx.beginPath();
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, h);
-    ctx.stroke();
-  }
-  for (let y = 0; y < h; y += spacing) {
-    ctx.beginPath();
-    ctx.moveTo(0, y);
-    ctx.lineTo(w, y);
-    ctx.stroke();
-  }
-  ctx.restore();
-}
-
-// === GRADIENT MESH BACKGROUND ===
-function drawBg(ctx, w, h) {
-  ctx.fillStyle = '#050510';
-  ctx.fillRect(0, 0, w, h);
-
-  function blob(x, y, r, color, opacity) {
-    const g = ctx.createRadialGradient(x, y, 0, x, y, r);
-    g.addColorStop(0, color);
-    g.addColorStop(1, 'transparent');
-    ctx.save();
-    ctx.globalAlpha = opacity;
-    ctx.fillStyle = g;
-    ctx.fillRect(x - r, y - r, r * 2, r * 2);
-    ctx.restore();
-  }
-
-  blob(150, 150, 400, '#6366f1', 0.4);
-  blob(w - 150, h - 100, 450, '#8b5cf6', 0.35);
-  blob(w * 0.7, 100, 300, '#06b6d4', 0.25);
-  blob(50, h - 50, 250, '#ec4899', 0.15);
-
-  drawGrid(ctx, w, h);
-  drawDataParticles(ctx, w, h);
-}
-
-// === NEWSFEED 1200 x 627 ===
-function drawNewsfeed(ctx, logo) {
-  const W = 1200, H = 627;
-  drawBg(ctx, W, H);
-
-  // Top accent bar
-  const accentG = ctx.createLinearGradient(60, 0, 160, 0);
-  accentG.addColorStop(0, '#6366f1');
-  accentG.addColorStop(1, '#8b5cf6');
-  ctx.fillStyle = accentG;
-  rr(ctx, 60, 50, 80, 5, 2.5);
+// === FEATURE PILL BOX ===
+function drawPill(ctx, x, y, w, h, iconFn, text, accentColor) {
+  // Background
+  const g = ctx.createLinearGradient(x, y, x + w, y);
+  g.addColorStop(0, 'rgba(99, 102, 241, 0.08)');
+  g.addColorStop(1, 'rgba(139, 92, 246, 0.05)');
+  ctx.fillStyle = g;
+  rr(ctx, x, y, w, h, 16);
   ctx.fill();
 
-  // Logo top-left
-  drawWhiteLogo(ctx, logo, 60, 80, 36);
-
-  // === RIGHT SIDE: Composite graphic ===
-  // Stopwatch (centerpiece, slightly smaller)
-  drawStopwatch(ctx, 950, 280, 0.85);
-
-  // Neural network behind/around stopwatch
-  ctx.globalAlpha = 0.8;
-  drawNeuralNetwork(ctx, 950, 470, 0.6);
-  ctx.globalAlpha = 1;
-
-  // Brain icon (top-left of stopwatch zone)
-  drawBrainIcon(ctx, 800, 130, 50);
-
-  // Code brackets (top-right of stopwatch zone)
-  drawCodeBrackets(ctx, 1100, 130, 40, '#06b6d4');
-
-  // Connecting line graphic (subtle)
+  // Border
   ctx.strokeStyle = 'rgba(99, 102, 241, 0.2)';
-  ctx.lineWidth = 1;
-  ctx.setLineDash([4, 4]);
-  ctx.beginPath();
-  ctx.moveTo(820, 150);
-  ctx.lineTo(900, 250);
+  ctx.lineWidth = 1.5;
+  rr(ctx, x, y, w, h, 16);
   ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(1080, 150);
-  ctx.lineTo(1000, 250);
-  ctx.stroke();
-  ctx.setLineDash([]);
 
-  // === LEFT SIDE: Text content ===
-  // Headline
-  ctx.textAlign = 'left';
-  ctx.font = '900 56px Inter, system-ui, sans-serif';
+  // Icon circle
   ctx.fillStyle = '#ffffff';
-  ctx.fillText('Hire an AI/ML', 60, 220);
-  ctx.fillText('Engineer in', 60, 290);
+  ctx.beginPath();
+  ctx.arc(x + 36, y + h / 2, 22, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = accentColor;
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.arc(x + 36, y + h / 2, 22, 0, Math.PI * 2);
+  ctx.stroke();
 
-  // Highlighted "48 Hours"
-  ctx.fillStyle = '#a5b4fc';
-  ctx.fillText('48 Hours.', 60, 360);
+  // Draw icon inside circle
+  iconFn(ctx, x + 36, y + h / 2, 11, accentColor);
 
-  // Sub-text
-  ctx.font = '500 22px Inter, system-ui, sans-serif';
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-  ctx.fillText('Pre-vetted. Senior-level. Ready to build.', 60, 415);
+  // Text
+  ctx.font = '700 17px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#1f2937';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, x + 70, y + h / 2);
+}
 
-  // CTA button
+// === DEVELOPER WORKSPACE ILLUSTRATION ===
+function drawWorkspace(ctx, cx, cy, scale) {
   ctx.save();
-  ctx.shadowColor = 'rgba(99, 102, 241, 0.5)';
-  ctx.shadowBlur = 25;
-  ctx.shadowOffsetY = 6;
-  const btnG = ctx.createLinearGradient(60, 0, 340, 0);
-  btnG.addColorStop(0, '#6366f1');
-  btnG.addColorStop(1, '#8b5cf6');
-  ctx.fillStyle = btnG;
-  rr(ctx, 60, 460, 290, 60, 30);
+  ctx.translate(cx, cy);
+  ctx.scale(scale, scale);
+
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  const stroke = '#8b5cf6';
+  const accent = '#ec4899';
+  ctx.strokeStyle = stroke;
+  ctx.lineWidth = 3;
+
+  // Monitor stand
+  ctx.beginPath();
+  ctx.moveTo(-30, 110);
+  ctx.lineTo(30, 110);
+  ctx.lineTo(20, 80);
+  ctx.lineTo(-20, 80);
+  ctx.closePath();
+  ctx.stroke();
+
+  // Monitor base
+  ctx.beginPath();
+  ctx.moveTo(-60, 120);
+  ctx.lineTo(60, 120);
+  ctx.stroke();
+
+  // Monitor screen
+  ctx.fillStyle = '#1f2937';
+  rr(ctx, -130, -90, 260, 170, 8);
+  ctx.fill();
+  ctx.strokeStyle = accent;
+  ctx.lineWidth = 4;
+  rr(ctx, -130, -90, 260, 170, 8);
+  ctx.stroke();
+
+  // Code lines on screen
+  ctx.strokeStyle = '#a5b4fc';
+  ctx.lineWidth = 2.5;
+  ctx.lineCap = 'round';
+  // Top tabs (3 dots)
+  ctx.fillStyle = '#ec4899';
+  ctx.beginPath(); ctx.arc(-110, -70, 4, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#fbbf24';
+  ctx.beginPath(); ctx.arc(-95, -70, 4, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#22c55e';
+  ctx.beginPath(); ctx.arc(-80, -70, 4, 0, Math.PI * 2); ctx.fill();
+
+  // Code lines (varying lengths)
+  ctx.strokeStyle = '#a5b4fc';
+  const lines = [
+    {x: -110, y: -45, len: 80},
+    {x: -100, y: -25, len: 130},
+    {x: -110, y: -5, len: 100},
+    {x: -90, y: 15, len: 150},
+    {x: -100, y: 35, len: 90},
+    {x: -110, y: 55, len: 120}
+  ];
+  lines.forEach(l => {
+    ctx.beginPath();
+    ctx.moveTo(l.x, l.y);
+    ctx.lineTo(l.x + l.len, l.y);
+    ctx.stroke();
+  });
+
+  // Pink accent line
+  ctx.strokeStyle = '#ec4899';
+  ctx.beginPath();
+  ctx.moveTo(-110, -25);
+  ctx.lineTo(-105, -25);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(-100, 15);
+  ctx.lineTo(-95, 15);
+  ctx.stroke();
+
+  // Keyboard (below monitor)
+  ctx.strokeStyle = stroke;
+  ctx.lineWidth = 3;
+  rr(ctx, -110, 145, 220, 50, 6);
+  ctx.stroke();
+
+  // Keyboard keys (rows)
+  ctx.lineWidth = 1.5;
+  for (let row = 0; row < 3; row++) {
+    for (let col = 0; col < 10; col++) {
+      const kx = -100 + col * 21;
+      const ky = 153 + row * 12;
+      rr(ctx, kx, ky, 17, 8, 1);
+      ctx.stroke();
+    }
+  }
+
+  // Hands on keyboard (simplified outline)
+  ctx.strokeStyle = stroke;
+  ctx.lineWidth = 3;
+  ctx.fillStyle = 'rgba(139, 92, 246, 0.05)';
+  // Left hand
+  ctx.beginPath();
+  ctx.moveTo(-70, 195);
+  ctx.bezierCurveTo(-90, 200, -100, 230, -85, 255);
+  ctx.bezierCurveTo(-75, 260, -55, 255, -45, 240);
+  ctx.bezierCurveTo(-40, 220, -50, 200, -70, 195);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  // Fingers (left)
+  for (let i = 0; i < 4; i++) {
+    ctx.beginPath();
+    ctx.moveTo(-78 + i * 8, 195);
+    ctx.lineTo(-78 + i * 8, 175);
+    ctx.stroke();
+  }
+
+  // Right hand
+  ctx.beginPath();
+  ctx.moveTo(70, 195);
+  ctx.bezierCurveTo(90, 200, 100, 230, 85, 255);
+  ctx.bezierCurveTo(75, 260, 55, 255, 45, 240);
+  ctx.bezierCurveTo(40, 220, 50, 200, 70, 195);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  // Fingers (right)
+  for (let i = 0; i < 4; i++) {
+    ctx.beginPath();
+    ctx.moveTo(50 + i * 8, 195);
+    ctx.lineTo(50 + i * 8, 175);
+    ctx.stroke();
+  }
+
+  // Coffee cup (right side)
+  ctx.strokeStyle = stroke;
+  ctx.lineWidth = 3;
+  ctx.fillStyle = '#fef3c7';
+  ctx.beginPath();
+  rr(ctx, 150, 100, 50, 60, 4);
+  ctx.fill();
+  ctx.stroke();
+  // Handle
+  ctx.beginPath();
+  ctx.arc(208, 130, 12, -Math.PI / 2, Math.PI / 2);
+  ctx.stroke();
+  // Steam
+  ctx.strokeStyle = 'rgba(139, 92, 246, 0.4)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(165, 95);
+  ctx.bezierCurveTo(160, 80, 170, 70, 165, 55);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(180, 95);
+  ctx.bezierCurveTo(175, 80, 185, 70, 180, 55);
+  ctx.stroke();
+
+  // Plant (left side)
+  ctx.fillStyle = '#ec4899';
+  ctx.strokeStyle = stroke;
+  ctx.lineWidth = 3;
+  // Pot
+  ctx.beginPath();
+  ctx.moveTo(-200, 130);
+  ctx.lineTo(-150, 130);
+  ctx.lineTo(-155, 165);
+  ctx.lineTo(-195, 165);
+  ctx.closePath();
+  ctx.fillStyle = '#fef3c7';
+  ctx.fill();
+  ctx.stroke();
+  // Leaves (3 round leaves)
+  ctx.fillStyle = '#ec4899';
+  ctx.beginPath();
+  ctx.arc(-185, 110, 18, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(-165, 105, 22, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(-150, 115, 16, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
+}
+
+// === STAR/SPARKLE DECORATIVE ===
+function drawStarDeco(ctx, x, y, size, color) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.fillStyle = color;
+  // 4-point sparkle
+  ctx.beginPath();
+  ctx.moveTo(0, -size);
+  ctx.lineTo(size * 0.25, -size * 0.25);
+  ctx.lineTo(size, 0);
+  ctx.lineTo(size * 0.25, size * 0.25);
+  ctx.lineTo(0, size);
+  ctx.lineTo(-size * 0.25, size * 0.25);
+  ctx.lineTo(-size, 0);
+  ctx.lineTo(-size * 0.25, -size * 0.25);
+  ctx.closePath();
   ctx.fill();
   ctx.restore();
-  ctx.font = '700 20px Inter, system-ui, sans-serif';
-  ctx.fillStyle = '#ffffff';
-  ctx.textAlign = 'center';
-  ctx.fillText('Get Matched Now →', 205, 498);
-
-  // Trust signal bottom
-  ctx.textAlign = 'left';
-  ctx.font = '500 13px Inter, system-ui, sans-serif';
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-  ctx.fillText('40+ AI products shipped  |  USA & Australia  |  End-to-end delivery', 60, 575);
 }
 
 // === SQUARE 1200 x 1200 ===
 function drawSquare(ctx, logo) {
   const W = 1200, H = 1200;
-  drawBg(ctx, W, H);
+  drawLightBg(ctx, W, H);
 
-  // Top accent
-  const accentG = ctx.createLinearGradient(80, 0, 180, 0);
-  accentG.addColorStop(0, '#6366f1');
-  accentG.addColorStop(1, '#8b5cf6');
-  ctx.fillStyle = accentG;
-  rr(ctx, 80, 80, 80, 5, 2.5);
+  // Logo top-right
+  if (logo) {
+    const lh = 60;
+    drawLogoColor(ctx, logo, W - 60 - (logo.width / logo.height * lh), 60, lh);
+  }
+
+  // Decorative sparkles
+  drawStarDeco(ctx, 110, 130, 12, '#8b5cf6');
+  drawStarDeco(ctx, 1070, 380, 8, '#ec4899');
+  drawStarDeco(ctx, 90, 480, 6, '#06b6d4');
+  drawStarDeco(ctx, 1100, 700, 14, '#8b5cf6');
+
+  // === HEADLINE ===
+  ctx.textAlign = 'left';
+  ctx.font = '900 84px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#1f2937';
+  ctx.fillText('Hire an AI/ML', 80, 270);
+  ctx.fillText('Engineer in', 80, 360);
+
+  // 48 Hours pill (highlighted)
+  // Measure "in " width to position pill
+  ctx.font = '900 84px Inter, system-ui, sans-serif';
+  const inText = 'in ';
+  const inWidth = ctx.measureText(inText).width;
+
+  // Pill behind "48 Hours"
+  const pillX = 80 + inWidth + 5;
+  const pillY = 380;
+  const pillW = 460;
+  const pillH = 95;
+
+  const pillG = ctx.createLinearGradient(pillX, 0, pillX + pillW, 0);
+  pillG.addColorStop(0, 'rgba(139, 92, 246, 0.15)');
+  pillG.addColorStop(1, 'rgba(99, 102, 241, 0.15)');
+  ctx.fillStyle = pillG;
+  rr(ctx, pillX, pillY, pillW, pillH, 47);
   ctx.fill();
-
-  // Logo top-left
-  drawWhiteLogo(ctx, logo, 80, 110, 50);
-
-  // Top-right code brackets
-  drawCodeBrackets(ctx, 1080, 130, 50, '#06b6d4');
-
-  // === COMPOSITE GRAPHIC: Stopwatch + Neural network ===
-  drawStopwatch(ctx, 600, 380, 1.4);
-
-  // Neural network below stopwatch
-  drawNeuralNetwork(ctx, 600, 620, 0.95);
-
-  // Brain icon left of stopwatch
-  drawBrainIcon(ctx, 230, 380, 70);
-
-  // Code icon right of stopwatch
-  drawCodeBrackets(ctx, 970, 380, 60, '#06b6d4');
-
-  // Connecting dotted lines
-  ctx.strokeStyle = 'rgba(99, 102, 241, 0.25)';
-  ctx.lineWidth = 1.5;
-  ctx.setLineDash([5, 5]);
-  ctx.beginPath();
-  ctx.moveTo(290, 380);
-  ctx.lineTo(450, 380);
+  ctx.strokeStyle = '#8b5cf6';
+  ctx.lineWidth = 2;
+  rr(ctx, pillX, pillY, pillW, pillH, 47);
   ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(750, 380);
-  ctx.lineTo(910, 380);
-  ctx.stroke();
-  ctx.setLineDash([]);
 
-  // === Text section bottom ===
-  ctx.textAlign = 'center';
-  ctx.font = '900 64px Inter, system-ui, sans-serif';
-  ctx.fillStyle = '#ffffff';
-  ctx.fillText('Hire an AI/ML Engineer', 600, 800);
+  // Small clock icon inside pill
+  drawSmallClock(ctx, pillX + 50, pillY + pillH / 2, 22, '#8b5cf6');
 
-  ctx.fillStyle = '#a5b4fc';
-  ctx.fillText('in 48 Hours.', 600, 875);
+  // "48 Hours." text inside pill
+  ctx.font = '900 76px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#8b5cf6';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('48 Hours.', pillX + 90, pillY + pillH / 2 + 4);
+  ctx.textBaseline = 'alphabetic';
 
-  // Sub-text
+  // === SUB-TEXT ===
   ctx.font = '500 28px Inter, system-ui, sans-serif';
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-  ctx.fillText('Pre-vetted. Senior-level. Ready to build.', 600, 940);
+  ctx.fillStyle = '#4b5563';
+  ctx.fillText('Pre-vetted. Senior-level. Ready to build.', 80, 530);
 
-  // CTA button
+  // === FEATURE PILLS (3 pills) ===
+  const pillStartY = 600;
+  const pillHeight = 75;
+  const pillGap = 18;
+
+  // Pill 1: 48-hour matching
+  drawPill(ctx, 80, pillStartY, 540, pillHeight,
+    (c, x, y, s, col) => drawSmallClock(c, x, y, s, col),
+    '48-hour matching', '#8b5cf6');
+
+  // Pill 2: Pre-vetted senior talent
+  drawPill(ctx, 640, pillStartY, 480, pillHeight,
+    (c, x, y, s, col) => drawShieldCheck(c, x, y, s, col),
+    'Pre-vetted talent', '#6366f1');
+
+  // Pill 3: AI/ML expertise
+  drawPill(ctx, 80, pillStartY + pillHeight + pillGap, 540, pillHeight,
+    (c, x, y, s, col) => drawSpark(c, x, y, s * 0.9, col),
+    'Senior AI/ML expertise', '#ec4899');
+
+  // Pill 4: 40-hour free trial
+  drawPill(ctx, 640, pillStartY + pillHeight + pillGap, 480, pillHeight,
+    (c, x, y, s, col) => drawShieldCheck(c, x, y, s, col),
+    '40-hr free trial', '#06b6d4');
+
+  // === WORKSPACE ILLUSTRATION (bottom) ===
+  drawWorkspace(ctx, 600, 920, 0.9);
+
+  // === CTA BUTTON ===
   ctx.save();
-  ctx.shadowColor = 'rgba(99, 102, 241, 0.5)';
-  ctx.shadowBlur = 30;
+  ctx.shadowColor = 'rgba(139, 92, 246, 0.4)';
+  ctx.shadowBlur = 25;
   ctx.shadowOffsetY = 8;
   const btnG = ctx.createLinearGradient(380, 0, 820, 0);
   btnG.addColorStop(0, '#6366f1');
   btnG.addColorStop(1, '#8b5cf6');
   ctx.fillStyle = btnG;
-  rr(ctx, 380, 990, 440, 80, 40);
+  rr(ctx, 380, 1100, 440, 70, 35);
   ctx.fill();
   ctx.restore();
-  ctx.font = '700 26px Inter, system-ui, sans-serif';
-  ctx.fillStyle = '#ffffff';
-  ctx.fillText('Get Matched Now →', 600, 1040);
 
-  // Trust signal bottom
-  ctx.font = '500 16px Inter, system-ui, sans-serif';
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-  ctx.fillText('40+ AI products shipped  |  USA & Australia  |  End-to-end delivery', 600, 1120);
+  ctx.font = '700 24px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#ffffff';
+  ctx.textAlign = 'center';
+  ctx.fillText('Get Matched Now →', 600, 1145);
+}
+
+// === NEWSFEED 1200 x 627 ===
+function drawNewsfeed(ctx, logo) {
+  const W = 1200, H = 627;
+  drawLightBg(ctx, W, H);
+
+  // Logo top-right
+  if (logo) {
+    const lh = 44;
+    drawLogoColor(ctx, logo, W - 60 - (logo.width / logo.height * lh), 50, lh);
+  }
+
+  // Decorative
+  drawStarDeco(ctx, 70, 80, 10, '#8b5cf6');
+  drawStarDeco(ctx, 720, 100, 8, '#ec4899');
+
+  // === HEADLINE (left) ===
+  ctx.textAlign = 'left';
+  ctx.font = '900 56px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#1f2937';
+  ctx.fillText('Hire an AI/ML', 60, 180);
+  ctx.fillText('Engineer in', 60, 250);
+
+  // Pill behind "48 Hours"
+  const pillX = 60;
+  const pillY = 280;
+  const pillW = 380;
+  const pillH = 75;
+
+  const pillG = ctx.createLinearGradient(pillX, 0, pillX + pillW, 0);
+  pillG.addColorStop(0, 'rgba(139, 92, 246, 0.15)');
+  pillG.addColorStop(1, 'rgba(99, 102, 241, 0.15)');
+  ctx.fillStyle = pillG;
+  rr(ctx, pillX, pillY, pillW, pillH, 37);
+  ctx.fill();
+  ctx.strokeStyle = '#8b5cf6';
+  ctx.lineWidth = 2;
+  rr(ctx, pillX, pillY, pillW, pillH, 37);
+  ctx.stroke();
+
+  drawSmallClock(ctx, pillX + 42, pillY + pillH / 2, 18, '#8b5cf6');
+
+  ctx.font = '900 56px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#8b5cf6';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('48 Hours.', pillX + 75, pillY + pillH / 2 + 3);
+  ctx.textBaseline = 'alphabetic';
+
+  // Sub-text
+  ctx.font = '500 22px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#4b5563';
+  ctx.fillText('Pre-vetted. Senior-level. Ready to build.', 60, 410);
+
+  // Feature pills (compact, 2 rows)
+  drawPill(ctx, 60, 445, 280, 55,
+    (c, x, y, s, col) => drawShieldCheck(c, x, y, s, col),
+    'Pre-vetted talent', '#6366f1');
+  drawPill(ctx, 360, 445, 280, 55,
+    (c, x, y, s, col) => drawSpark(c, x, y, s * 0.9, col),
+    'Senior AI/ML', '#ec4899');
+
+  // CTA button
+  ctx.save();
+  ctx.shadowColor = 'rgba(139, 92, 246, 0.4)';
+  ctx.shadowBlur = 20;
+  ctx.shadowOffsetY = 6;
+  const btnG = ctx.createLinearGradient(60, 0, 360, 0);
+  btnG.addColorStop(0, '#6366f1');
+  btnG.addColorStop(1, '#8b5cf6');
+  ctx.fillStyle = btnG;
+  rr(ctx, 60, 525, 300, 60, 30);
+  ctx.fill();
+  ctx.restore();
+
+  ctx.font = '700 20px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#ffffff';
+  ctx.textAlign = 'center';
+  ctx.fillText('Get Matched Now →', 210, 563);
+
+  // === WORKSPACE ILLUSTRATION (right side) ===
+  drawWorkspace(ctx, 950, 320, 0.85);
 }
 
 async function init() {
@@ -547,8 +637,8 @@ async function init() {
     i.src = LOGO_DATA;
   });
 
-  drawNewsfeed(document.getElementById('c1').getContext('2d'), logo);
   drawSquare(document.getElementById('c2').getContext('2d'), logo);
+  drawNewsfeed(document.getElementById('c1').getContext('2d'), logo);
 }
 
 const LOGO_DATA = 'data:image/png;base64,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';
